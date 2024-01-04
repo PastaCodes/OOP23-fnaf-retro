@@ -26,5 +26,5 @@ tasks.test {
 }
 
 application {
-    mainClass.set("it.unibo.fnafretro.Program")
+    mainClass = "it.unibo.fnafretro.Program"
 }
