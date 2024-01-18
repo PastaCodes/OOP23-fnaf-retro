@@ -36,7 +36,7 @@ class EventQueueImpl implements EventQueue {
 
     @Override
     public void insert(final int tick, final Runnable action) {
-        this.queue.offer(new Event(tick, action));
+        this.queue.add(new Event(tick, action));
     }
 
 }
