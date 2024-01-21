@@ -2,7 +2,7 @@ plugins {
 	java
 	application
 	id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("org.danilopianini.gradle-java-qa") version "1.28.0"
+    id("org.danilopianini.gradle-java-qa") version "1.34.0"
 }
 
 repositories {
@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.github.spotbugs:spotbugs-annotations:4.8.2")
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.8.3")
 
     val jUnitVersion = "5.10.1"
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
