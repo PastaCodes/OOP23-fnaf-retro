@@ -46,6 +46,7 @@ public interface EventThread {
 
     /**
      * Avvia il thread di gioco.
+     * Si assume che venga chiamato una sola volta.
      */
     void start();
 
