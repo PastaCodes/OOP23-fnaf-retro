@@ -2,9 +2,7 @@ package it.unibo.fnafretro.ai;
 
 import java.util.List;
 import java.util.function.Function;
-import java.util.random.RandomGenerator;
 
-import it.unibo.fnafretro.game.EventThread;
 import it.unibo.fnafretro.game.Game;
 
 /**
