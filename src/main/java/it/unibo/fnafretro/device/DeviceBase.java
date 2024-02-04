@@ -8,8 +8,13 @@ import it.unibo.fnafretro.power.PowerImpl;
  */
 
 public abstract class DeviceBase implements Device {
-    PowerImpl power;
-    boolean status;
+
+    private PowerImpl power;
+    private boolean status;
+
+    public DeviceBase(PowerImpl power) {
+        this.power = power;
+    }
 
     @Override
     public boolean isSwitchedOn() {
@@ -19,11 +24,13 @@ public abstract class DeviceBase implements Device {
     @Override
     public void switchOff() {
         this.status = false;
+        this.power.removeTick();
     }
 
     @Override
     public void switchOn() {
         this.status = true;
+        this.power.addTick();
     }
 
 }
