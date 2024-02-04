@@ -2,6 +2,7 @@ package it.unibo.fnafretro.game;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.random.RandomGenerator;
 
 import it.unibo.fnafretro.ai.AiDescriptor;
 
@@ -29,5 +30,10 @@ public interface Game {
      * @return  il gestore di eventi di questa partita
      */
     EventThread events();
+
+    /**
+     * @return  il generatore casuale usato in questa partita
+     */
+    RandomGenerator random();
 
 }
