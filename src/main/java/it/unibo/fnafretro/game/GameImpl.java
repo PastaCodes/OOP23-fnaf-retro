@@ -21,32 +21,17 @@ class GameImpl implements Game {
         final List<AiDescriptor> aiSet,
         final Function<AiDescriptor, Integer> levels
     ) {
-        this.initAis(aiSet, levels);
-    }
-
-    /**
-     * Registra gli eventi periodici necessari per realizzare il comportamento
-     * delle {@link Ai}.
-     * @param   aiSet   le AI selezionate per questa partita
-     * @param   levels  una funzione che specifichi un AI level iniziale per
-     *                  ogni AI
-     */
-    private void initAis(
-        final List<AiDescriptor> aiSet,
-        final Function<AiDescriptor, Integer> levels
-    ) {
-        aiSet.forEach(aiDescr -> {
-            final Ai ai = aiDescr.create(this, levels.apply(aiDescr));
-            this.eventThread.scheduleRepeating(
-                aiDescr.cooldown(),
-                Ai.opportunityEvent(ai, this.random)
-            );
-        });
+        Ai.initAis(aiSet, levels, this);
     }
 
     @Override
     public EventThread events() {
         return this.eventThread;
+    }
+
+    @Override
+    public RandomGenerator random() {
+        return this.random;
     }
 
 }

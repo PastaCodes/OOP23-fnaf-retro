@@ -1,6 +1,11 @@
 package it.unibo.fnafretro.ai;
 
+import java.util.List;
+import java.util.function.Function;
 import java.util.random.RandomGenerator;
+
+import it.unibo.fnafretro.game.EventThread;
+import it.unibo.fnafretro.game.Game;
 
 /**
  * Rappresenta un'AI nemica all'interno di una partita in corso.
@@ -29,23 +34,32 @@ public interface Ai {
     int MAX_LEVEL = 20;
 
     /**
-     * Crea un evento che realizzi il comportamento descritto per le {@link Ai}.
-     * @param   ai      l'AI per cui si vuole implementare il comportamento
-     * @param   random  il generatore casuale da utilizzare per l'estrazione
-     * @return          l'evento creato
+     * Registra gli eventi periodici necessari per realizzare il comportamento
+     * delle AI all'interno della partita specificata.
+     * @param   aiSet   le AI selezionate per questa partita
+     * @param   levels  una funzione che specifichi un AI level iniziale per
+     *                  ogni AI
+     * @param   game    la partita da inizializzare
      */
-    static Runnable opportunityEvent(
-        final Ai ai,
-        final RandomGenerator random
+    static void initAis(
+        final List<AiDescriptor> aiSet,
+        final Function<AiDescriptor, Integer> levels,
+        final Game game
     ) {
-        return () -> {
-            if (
-                ai.isActive()
-            &&  random.nextInt(Ai.MAX_LEVEL) < ai.getLevel()
-            ) {
-                ai.act();
-            }
-        };
+        aiSet.forEach(aiDescr -> {
+            final Ai ai = aiDescr.create(game, levels.apply(aiDescr));
+            game.events().scheduleRepeating(
+                aiDescr.cooldown(),
+                () -> {
+                    if (
+                        ai.isActive()
+                    &&  game.random().nextInt(Ai.MAX_LEVEL) < ai.getLevel()
+                    ) {
+                        ai.act();
+                    }
+                }
+            );
+        });
     }
 
     /**
