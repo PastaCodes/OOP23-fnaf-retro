@@ -14,7 +14,14 @@ class EventThreadImpl extends Thread implements EventThread {
 
     @Override
     public void schedule(final int delay, final Runnable action) {
-        this.eventQueue.insert(this.tick + delay, action);
+        /*
+         * Tecnicamente la sincronizzazione non sarebbe necessaria, dato che si
+         * assume che questo metodo venga chiamato esclusivamente da eventi sul
+         * thread di gioco, che sono già sincronizzati.
+         */
+        synchronized (this) {
+            this.eventQueue.insert(this.tick + delay, action);
+        }
     }
 
     @Override
