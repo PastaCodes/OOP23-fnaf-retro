@@ -25,10 +25,9 @@ class EventQueueImpl implements EventQueue {
     }
 
     @Override
-    public List<Runnable> pullCurrent() {
-        final int now = this.queue.peek().tick;
+    public List<Runnable> pullBefore(final int tick) {
         final List<Runnable> out = new ArrayList<>();
-        while (!this.queue.isEmpty() && this.queue.peek().tick == now) {
+        while (!this.queue.isEmpty() && this.queue.peek().tick <= tick) {
             out.add(this.queue.poll().action());
         }
         return out;

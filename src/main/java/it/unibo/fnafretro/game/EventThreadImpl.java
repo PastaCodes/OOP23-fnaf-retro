@@ -26,26 +26,49 @@ class EventThreadImpl extends Thread implements EventThread {
     }
 
     @Override
+    public void scheduleSignal(final Runnable action) {
+        synchronized (this) {
+            this.eventQueue.insert(-1, action);
+        }
+        this.interrupt();
+    }
+
+    private static long time() {
+        return System.currentTimeMillis();
+    }
+
+    private static long tickToTime(final int tick, final long baseTime) {
+        return 1000 * tick / TICKS_PER_SECOND + baseTime;
+    }
+
+    private static int timeToTick(final long time, final long baseTime) {
+        return (int) Math.floorDiv((time - baseTime) * TICKS_PER_SECOND, 1000);
+    }
+
+    @Override
     public void run() {
-        long time = System.currentTimeMillis();
+        final long time0 = time();
         Optional<Integer> nextTick = this.eventQueue.nextTick();
         while (nextTick.isPresent()) {
-            final int delayTicks = nextTick.get() - this.tick;
-            long delay = 1000 * delayTicks / EventThread.TICKS_PER_SECOND;
-            delay -= System.currentTimeMillis() - time;
-            while (delay > 0) {
-                time = System.currentTimeMillis();
+            while (true) {
+                final long delay = tickToTime(nextTick.get(), time0) - time();
                 try {
-                    Thread.sleep(delay);
-                    delay = 0;
+                    if (delay > 0) {
+                        Thread.sleep(delay);
+                    }
+                    break;
                 } catch (final InterruptedException e) {
-                    delay -= System.currentTimeMillis() - time;
+                    synchronized (this) {
+                        this.tick = timeToTick(time(), time0);
+                        nextTick = Optional.of(this.tick + 1);
+                    }
                 }
             }
-            this.tick = nextTick.get();
-            time = System.currentTimeMillis();
-            this.eventQueue.pullCurrent().forEach(Runnable::run);
-            nextTick = this.eventQueue.nextTick();
+            synchronized (this) {
+                this.tick = nextTick.get();
+                this.eventQueue.pullBefore(this.tick).forEach(Runnable::run);
+                nextTick = this.eventQueue.nextTick();
+            }
         }
     }
 

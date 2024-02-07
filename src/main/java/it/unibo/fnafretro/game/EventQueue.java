@@ -28,14 +28,13 @@ interface EventQueue {
     Optional<Integer> nextTick();
 
     /**
-     * Tutti gli eventi associati al game tick attuale vengono rimossi dalla
-     * coda e restituiti.
-     * Si assume che questo metodo venga chiamato quando il game tick attuale
-     * coincide con quello dell'evento più imminente nella coda.
-     * Si assume anche che la coda non sia vuota.
-     * @return  una lista contenente gli eventi attuali
+     * Rimuove dalla coda e restituisce tutti gli eventi associati a un game
+     * tick precedente o uguale a quello specificato.
+     * @param   tick    il game tick di riferimento
+     * @return          una lista contenente gli eventi precedenti al game tick
+     *                  di riferimento, possibilmente vuota
      */
-    List<Runnable> pullCurrent();
+    List<Runnable> pullBefore(int tick);
 
     /**
      * Inserisce un evento nella coda, associandogli un certo game tick.

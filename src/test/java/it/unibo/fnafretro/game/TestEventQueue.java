@@ -27,13 +27,13 @@ class TestEventQueue {
         eq.insert(4, c);
         eq.insert(3, d);
         assertEquals(Optional.of(1), eq.nextTick());
-        assertEquals(List.of(b), eq.pullCurrent());
+        assertEquals(List.of(b), eq.pullBefore(1));
         assertEquals(Optional.of(2), eq.nextTick());
-        assertEquals(List.of(a), eq.pullCurrent());
+        assertEquals(List.of(a), eq.pullBefore(2));
         assertEquals(Optional.of(3), eq.nextTick());
-        assertEquals(List.of(d), eq.pullCurrent());
+        assertEquals(List.of(d), eq.pullBefore(3));
         assertEquals(Optional.of(4), eq.nextTick());
-        assertEquals(List.of(c), eq.pullCurrent());
+        assertEquals(List.of(c), eq.pullBefore(4));
         assertEquals(Optional.empty(), eq.nextTick());
     }
 
@@ -43,7 +43,7 @@ class TestEventQueue {
         eq.insert(2, b);
         eq.insert(2, c);
         assertEquals(Optional.of(2), eq.nextTick());
-        assertEquals(List.of(a, b, c), eq.pullCurrent());
+        assertEquals(List.of(a, b, c), eq.pullBefore(2));
         assertEquals(Optional.empty(), eq.nextTick());
     }
 
@@ -57,13 +57,13 @@ class TestEventQueue {
         eq.insert(4, e);
         eq.insert(3, f);
         assertEquals(Optional.of(1), eq.nextTick());
-        assertEquals(List.of(c), eq.pullCurrent());
+        assertEquals(List.of(c), eq.pullBefore(1));
         assertEquals(Optional.of(2), eq.nextTick());
-        assertEquals(List.of(a, d), eq.pullCurrent());
+        assertEquals(List.of(a, d), eq.pullBefore(2));
         assertEquals(Optional.of(3), eq.nextTick());
-        assertEquals(List.of(b, f), eq.pullCurrent());
+        assertEquals(List.of(b, f), eq.pullBefore(3));
         assertEquals(Optional.of(4), eq.nextTick());
-        assertEquals(List.of(e), eq.pullCurrent());
+        assertEquals(List.of(e), eq.pullBefore(4));
         assertEquals(Optional.empty(), eq.nextTick());
     }
 

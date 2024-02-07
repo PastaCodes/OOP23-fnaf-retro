@@ -45,6 +45,13 @@ public interface EventThread {
     void scheduleRepeating(int period, Runnable action);
 
     /**
+     * Pianifica l'esecuzione di un'azione nel primo game tick disponibile.
+     * Questo medoto può essere chiamato da thread diversi da quello di gioco.
+     * @param   action  l'azione che si desidera pianificare
+     */
+    void scheduleSignal(Runnable action);
+
+    /**
      * Avvia il thread di gioco.
      * Si assume che venga chiamato una sola volta.
      */
