@@ -6,28 +6,11 @@ import it.unibo.fnafretro.power.PowerImpl;
  * @author Davide Sancisi
  */
 
-public class Fan implements Device{
+public class Fan extends DeviceBase{
     PowerImpl power;
     boolean status;
-    public Fan(PowerImpl power){
-        this.status = false;
-        this.power = power;
-    }
-
-    @Override
-    public void switchOn() {
-        this.status = true;
-
-    }
-
-    @Override
-    public void switchOff() {
-        this.status = false;
-    }
-
-    @Override
-    public boolean isSwitchedOn() {
-        return this.status;
+    public Fan(PowerImpl power) {
+        super(power);
     }
     
 }

@@ -8,12 +8,17 @@ package it.unibo.fnafretro.power;
 
 public class PowerImpl implements Power{
 
-    private int Ticks = 1;
+    private int ticks = 1;
+    private double energyLevel = 1.000;
+    final double ENERGY_TICK_COST = 0.002;
 
     @Override
-    public void usageTicks() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'usageTicks'");
+    public void applyEnergyCost() {
+
+        double totalEnergyCost;
+        totalEnergyCost = this.ticks*this.ENERGY_TICK_COST;
+        this.energyLevel -= totalEnergyCost;
+
     }
 
     @Override
@@ -24,12 +29,17 @@ public class PowerImpl implements Power{
 
     @Override
     public void addTick() {
-        this.Ticks++;
+        this.ticks++;
     }
 
     @Override
     public void removeTick() {
-        this.Ticks--;
+        this.ticks--;
+    }
+
+    @Override
+    public double getEnergyLevel() {
+        return this.energyLevel;
     }
     
 }
