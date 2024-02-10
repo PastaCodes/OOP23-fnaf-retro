@@ -1,0 +1,12 @@
+1A none none
+1B both none
+1C both none
+5 left none
+7 right none
+3 left none
+6 right none
+2A left none
+2B left none
+4A right none
+4B right none
+YOU none none
