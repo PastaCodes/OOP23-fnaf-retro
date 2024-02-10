@@ -12,6 +12,10 @@ class EventThreadImpl extends Thread implements EventThread {
     private final EventQueue eventQueue = EventQueue.empty();
     private int tick;
 
+    {
+        this.setDaemon(true);
+    }
+
     @Override
     public void schedule(final int delay, final Runnable action) {
         /*
