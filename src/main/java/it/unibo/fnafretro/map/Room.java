@@ -1,8 +1,18 @@
 package it.unibo.fnafretro.map;
 
-//import java.util.List;
+/**
+ * rappresenta una stanza all' interno della mappa di gioco.
+ * @author Filippo Del Bianco
+ */
+public interface Room {
 
-interface Room {
-    public String getRoomName();
-    public String getSide();
+    /**
+     * @return il nome della stanza
+     */
+    String getRoomName();
+
+    /**
+     * @return il lato in cui si trova la stanza all' interno della mappa
+     */
+    String getSide();
 }
