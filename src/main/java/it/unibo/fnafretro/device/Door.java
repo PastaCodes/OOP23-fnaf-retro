@@ -1,6 +1,6 @@
 package it.unibo.fnafretro.device;
 
-import it.unibo.fnafretro.power.PowerImpl;
+import it.unibo.fnafretro.power.Power;
 
 /**
  * Classe per la gestione della porta.
@@ -9,7 +9,7 @@ import it.unibo.fnafretro.power.PowerImpl;
 
 public class Door extends DeviceBase {
 
-    public Door(PowerImpl power) {
+    public Door(Power power) {
         super(power);
     }
 
