@@ -20,8 +20,15 @@ public class NightImpl implements Night {
     public void advance() {
         this.hour++;
         
+        //Ogni ai ha il proprio orario a cui aumenta il livello, lo controllo
+        game.ais().forEach(ai -> {
+            if (ai.descriptor().levelUpHours().contains(this.hour)) {
+                ai.increaseLevel();
+            }
+        });
+
         if(this.hour == 6) {
-            // game.end(true);
+            game.end(true);
         }
     }
 
