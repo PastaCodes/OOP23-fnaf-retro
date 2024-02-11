@@ -2,7 +2,7 @@ package it.unibo.fnafretro;
 
 import java.io.IOException;
 
-import it.unibo.fnafretro.gui.Gui;
+import it.unibo.fnafretro.gui.GameGUI;
 
 /**
  * Classe di utility contenente l'entry-point del programma.
@@ -17,7 +17,7 @@ public final class Program {
      * @throws IOException 
      */
     public static void main(final String[] args) throws IOException {
-        Gui gui = new Gui();
+        GameGUI gui = new GameGUI();
     }
 
 }

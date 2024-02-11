@@ -9,7 +9,7 @@ public interface EventThread {
     /**
      * Il numero di game tick eseguiti ogni secondo.
      */
-    int TICKS_PER_SECOND = 20;
+    public int TICKS_PER_SECOND = 20;
 
     /**
      * Crea un'istanza pronta ad essere utilizzata.

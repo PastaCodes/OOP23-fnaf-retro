@@ -1,5 +1,7 @@
 package it.unibo.fnafretro.power;
 
+import it.unibo.fnafretro.game.*;
+
 /** 
  * Power: rappresenta il livello di energia del gioco. 
  * Il giocatore per azionare porte, ventilatore, telecamere utilizza energia.
@@ -10,24 +12,28 @@ package it.unibo.fnafretro.power;
 interface Power {
 
     /**
-     * quando un oggetto viene acceso/spento i "tick" di 
-     * usage aumentano/diminuiscono di 1. In base a quanti "tick" di usage sono 
-     * ogni 200 tick del gioco l'energia scala in base a quanti tick di usage sono
-     * attivi. Un tick di usage è sempre attivo. I tick di usage possono essere al
-     * massimo 5.
+     * Quando un dispositivo viene acceso/spento le tacche di 
+     * uso aumentano/diminuiscono di 1. 
+     * Ogni {@link EventThread#TICKS_PER_SECOND} dall'energia totale viene tolta una porzione calcolata
+     * in base a quanti dispositivi ci sono attivi.
+     * Una tacca di utilizzo è sempre attiva.
+     * Numero massimo di tacche di utilizzo: 5.
      */
     void applyEnergyCost();
 
-    void init();
+    void init(Game game);
 
-    /**
-     * funzioni che verranno chiamate ogni volta che si attiva/disattiva un device
-     */
     void addTick();
 
     void removeTick();
 
+    int getTicks();
+
     double getEnergyLevel();
+
+    public static Power create() {
+        return new PowerImpl();
+    }
     
 }
 
