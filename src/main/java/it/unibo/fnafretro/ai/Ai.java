@@ -1,9 +1,11 @@
 package it.unibo.fnafretro.ai;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import it.unibo.fnafretro.game.Game;
+import it.unibo.fnafretro.map.Room;
 
 /**
  * Rappresenta un'AI nemica all'interno di una partita in corso.
@@ -38,13 +40,14 @@ public interface Ai {
      * @param   levels  una funzione che specifichi un AI level iniziale per
      *                  ogni AI
      * @param   game    la partita da inizializzare
+     * @return          le instanze delle AI all'interno della partita
      */
-    static void initAis(
-        final List<AiDescriptor> aiSet,
+    static Set<Ai> initAis(
+        final Set<AiDescriptor> aiSet,
         final Function<AiDescriptor, Integer> levels,
         final Game game
     ) {
-        aiSet.forEach(aiDescr -> {
+        return aiSet.stream().map(aiDescr -> {
             final Ai ai = aiDescr.create(game, levels.apply(aiDescr));
             game.events().scheduleRepeating(
                 aiDescr.cooldown(),
@@ -57,23 +60,42 @@ public interface Ai {
                     }
                 }
             );
-        });
+            return ai;
+        }).collect(Collectors.toSet());
     }
 
     /**
-     * @return  l'AI level attuale.
+     * Aumenta l'AI level di 1 punto.
+     */
+    void increaseLevel();
+
+    /**
+     * @return  l'AI level attuale
      */
     int getLevel();
+
+    /**
+     * @return  la stanza in cui si trova attualmente l'AI
+     */
+    Room getPosition();
 
     /**
      * Determina se l'AI è attualmente attiva e può agire.
      * @return  {@code true} se è attiva, {@code false} altrimenti
      */
-    boolean isActive();
+    default boolean isActive() {
+        return true;
+    }
 
     /**
      * Segnala all'AI di agire, tipicamente muovendosi.
      */
     void act();
+
+    /**
+     * Fornisce le informazioni del personaggio istanziato da questa AI.
+     * @return  l'{@link AiDescriptor} di questa AI
+     */
+    AiDescriptor descriptor();
 
 }

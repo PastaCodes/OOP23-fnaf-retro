@@ -1,5 +1,7 @@
 package it.unibo.fnafretro.ai;
 
+import java.util.Set;
+
 import it.unibo.fnafretro.game.Game;
 
 /**
@@ -33,5 +35,17 @@ public interface AiDescriptor {
      * @return  il nome di questa AI
      */
     String name();
+
+    /**
+     * @return  il nome della stanza di partenza di questa AI
+     */
+    default String startingRoom() {
+        return "1A";
+    }
+
+    /**
+     * @return  le ore della notte in cui questa AI aumenta di livello
+     */
+    Set<Integer> levelUpHours();
 
 }
