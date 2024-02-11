@@ -1,38 +1,48 @@
 package it.unibo.fnafretro.map;
 
-public class CamerasImpl implements Cameras{
+/**
+ * implementazione dell'interfaccia Cameras.
+ * @author Filipp Del Bianco
+ */
+public final class CamerasImpl implements Cameras {
 
     private Room currentRoom;
     private boolean enabled;
     private boolean greyScreen;
 
-    public CamerasImpl(Room startingRoom){
+    CamerasImpl(final Room startingRoom) {
         this.currentRoom = startingRoom;
         this.enabled = false;
         this.greyScreen = false;
     }
 
-    public boolean getStatus(){
+    @Override
+    public boolean getStatus() {
         return this.enabled;
     }
 
-    public void setStatus(boolean status){
+    @Override
+    public void setStatus(final boolean status) {
         this.enabled = status;
     }
 
-    public boolean getGreyScreen(){
+    @Override
+    public boolean getGreyScreen() {
         return this.greyScreen;
     }
 
-    public void setGreyScreen(boolean greyScreen){
+    @Override
+    public void setGreyScreen(final boolean greyScreen) {
         this.greyScreen = greyScreen;
     }
-    
-    public Room getCurrentRoom(){
+
+    @Override
+    public Room getCurrentRoom() {
         return this.currentRoom;
     }
-    
-    public void setCurrentRoom(Room newRoom){
+
+    @Override
+    public void setCurrentRoom(final Room newRoom) {
         this.currentRoom = newRoom;
     }
 
