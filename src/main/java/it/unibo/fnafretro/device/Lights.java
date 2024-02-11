@@ -1,6 +1,6 @@
 package it.unibo.fnafretro.device;
 
-import it.unibo.fnafretro.power.PowerImpl;
+import it.unibo.fnafretro.power.Power;
 
 /**
  * Classe per la gestione e sincronizzazione fra le luci con
@@ -13,7 +13,7 @@ public class Lights {
     private Device left;
     private Device right;
 
-    public Lights(PowerImpl power) {
+    public Lights(Power power) {
         this.left = new Light(power);
         this.right = new Light(power);
     }
@@ -32,10 +32,18 @@ public class Lights {
         this.right.switchOff();
         this.left.switchOff();
     }
+    
+    public boolean isLeftLightOn() {
+        return this.left.isSwitchedOn();
+    }
+
+    public boolean isRightLightOn() {
+        return this.right.isSwitchedOn();
+    }
 
     private class Light extends DeviceBase {
 
-        public Light(PowerImpl power) {
+        public Light(Power power) {
             super(power);
         }
 
