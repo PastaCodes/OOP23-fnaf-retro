@@ -7,7 +7,7 @@ import it.unibo.fnafretro.power.PowerImpl;
  * @author Luca Ponseggi
  */
 
-public abstract class DeviceBase implements Device {
+abstract class DeviceBase implements Device {
 
     private PowerImpl power;
     private boolean status;
