@@ -24,6 +24,11 @@ public interface GameMap {
     Room getRoom(String roomName);
 
     /**
+     * @return tutte le stanze presenti nella mappa
+     */
+    List<Room> getAllRooms();
+
+    /**
      * @return le telecamere presenti nella mappa di gioco
      */
     Cameras getCameras();
