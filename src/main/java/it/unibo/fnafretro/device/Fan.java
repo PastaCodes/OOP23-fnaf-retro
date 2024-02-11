@@ -1,5 +1,5 @@
 package it.unibo.fnafretro.device;
-import it.unibo.fnafretro.power.PowerImpl;
+import it.unibo.fnafretro.power.Power;
 
 /**
  * Ventilatore. Ogni tot "tick" fa diminuire la temperatura di tot °.
@@ -7,9 +7,9 @@ import it.unibo.fnafretro.power.PowerImpl;
  */
 
 public class Fan extends DeviceBase{
-    PowerImpl power;
+    Power power;
     boolean status;
-    public Fan(PowerImpl power) {
+    public Fan(Power power) {
         super(power);
     }
     
