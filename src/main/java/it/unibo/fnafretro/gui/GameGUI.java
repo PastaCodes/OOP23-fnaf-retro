@@ -2,6 +2,7 @@ package it.unibo.fnafretro.gui;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,14 +28,14 @@ import java.io.IOException;
  * Parte grafica del gioco 
  */
 
-public class Gui extends JFrame{
+public class GameGUI extends JFrame{
 
     int size = 1;
     private static final int WIDTH = 160;
     private static final int HEIGHT = 90;
     private static final int DEAD_ZONE = 24;
     private static final int FULL_OFFSET = 48;
-    private int offset = Gui.FULL_OFFSET / 2;
+    private int offset = GameGUI.FULL_OFFSET / 2;
 
     private static BufferedImage loadImage(final String name) {
         try {
@@ -46,7 +47,7 @@ public class Gui extends JFrame{
         }
     }
 
-    public Gui() throws IOException{
+    public GameGUI() throws IOException{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(2080*size, 976*size); //Originale: 208x90
         this.setTitle("Five Nights at Freddy's: Retro");
@@ -62,18 +63,22 @@ public class Gui extends JFrame{
         background.setHorizontalAlignment(JLabel.CENTER);
         background.setVerticalAlignment(JLabel.CENTER);
         this.add(background, BorderLayout.CENTER);
+
+        final JButton b = new JButton("franco");
+        b.setBounds(400, 400, 200, 200);
+        this.add(b);
         
-                final Runnable update = () -> {
-            final Dimension size = Gui.this.getContentPane().getSize();
-            final int widthScale = size.width / Gui.WIDTH;
-            final int heightScale = size.height / Gui.HEIGHT;
+        final Runnable update = () -> {
+            final Dimension size = GameGUI.this.getContentPane().getSize();
+            final int widthScale = size.width / GameGUI.WIDTH;
+            final int heightScale = size.height / GameGUI.HEIGHT;
             final int scale = Math.min(widthScale, heightScale);
             final Image cropped = img.getSubimage(
-                Gui.this.offset, 0, Gui.WIDTH, Gui.HEIGHT
+                GameGUI.this.offset, 0, GameGUI.WIDTH, GameGUI.HEIGHT
             );
             final Image scaled = cropped.getScaledInstance(
-                Gui.WIDTH * scale,
-                Gui.HEIGHT * scale,
+                GameGUI.WIDTH * scale,
+                GameGUI.HEIGHT * scale,
                 Image.SCALE_FAST
             );
             background.setIcon(new ImageIcon(scaled));
@@ -92,21 +97,21 @@ public class Gui extends JFrame{
 
             @Override
             public void mouseMoved(final MouseEvent e) {
-                final Dimension size = Gui.this.getContentPane().getSize();
+                final Dimension size = GameGUI.this.getContentPane().getSize();
                 final int imgWidth = background.getIcon().getIconWidth();
                 final int offsetX = (int) (size.getWidth() - imgWidth) / 2;
-                final int scale = imgWidth / Gui.WIDTH;
+                final int scale = imgWidth / GameGUI.WIDTH;
                 final int pixelX = (e.getX() - offsetX) / scale;
-                if (pixelX < Gui.DEAD_ZONE + Gui.FULL_OFFSET) {
-                    final int newOffset = pixelX - Gui.DEAD_ZONE;
-                    if (newOffset < Gui.this.offset) {
-                        Gui.this.offset = Math.max(newOffset, 0);
+                if (pixelX < GameGUI.DEAD_ZONE + GameGUI.FULL_OFFSET) {
+                    final int newOffset = pixelX - GameGUI.DEAD_ZONE;
+                    if (newOffset < GameGUI.this.offset) {
+                        GameGUI.this.offset = Math.max(newOffset, 0);
                         update.run();
                     }
-                } else if (pixelX > Gui.WIDTH - Gui.DEAD_ZONE - Gui.FULL_OFFSET) {
-                    final int newOffset = pixelX - Gui.WIDTH + Gui.DEAD_ZONE + Gui.FULL_OFFSET;
-                    if (newOffset > Gui.this.offset) {
-                        Gui.this.offset = Math.min(newOffset, Gui.FULL_OFFSET);
+                } else if (pixelX > GameGUI.WIDTH - GameGUI.DEAD_ZONE - GameGUI.FULL_OFFSET) {
+                    final int newOffset = pixelX - GameGUI.WIDTH + GameGUI.DEAD_ZONE + GameGUI.FULL_OFFSET;
+                    if (newOffset > GameGUI.this.offset) {
+                        GameGUI.this.offset = Math.min(newOffset, GameGUI.FULL_OFFSET);
                         update.run();
                     }
                 }
