@@ -7,10 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.Insets;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -47,27 +44,32 @@ public class GameGUI extends JFrame{
         }
     }
 
-    public GameGUI() throws IOException{
+    public GameGUI(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(2080*size, 976*size); //Originale: 208x90
+        this.pack();
+        this.setBounds(
+            GraphicsEnvironment.getLocalGraphicsEnvironment()
+                .getMaximumWindowBounds()
+        );      
+        Insets insets = this.getInsets();
+        this.setMinimumSize(new Dimension(160+insets.left+insets.right, 90+insets.top+insets.bottom));
         this.setTitle("Five Nights at Freddy's: Retro");
-
-        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         this.setIconImage(loadImage("icon"));
-
         this.getContentPane().setBackground(Color.BLACK); 
 
         final BufferedImage img = loadImage("map/main");
-
         final JLabel background = new JLabel();
         background.setHorizontalAlignment(JLabel.CENTER);
         background.setVerticalAlignment(JLabel.CENTER);
         this.add(background, BorderLayout.CENTER);
 
+        /* 
         final JButton b = new JButton("franco");
         b.setBounds(400, 400, 200, 200);
         this.add(b);
-        
+        */
+
         final Runnable update = () -> {
             final Dimension size = GameGUI.this.getContentPane().getSize();
             final int widthScale = size.width / GameGUI.WIDTH;
