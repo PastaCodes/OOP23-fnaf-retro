@@ -46,6 +46,11 @@ class GameImpl implements Game {
     }
 
     @Override
+    public Set<Ai> ais() {
+        return this.ais;
+    }
+
+    @Override
     public void end(final boolean hasWon) {
         this.eventThread.stop();
         // TODO

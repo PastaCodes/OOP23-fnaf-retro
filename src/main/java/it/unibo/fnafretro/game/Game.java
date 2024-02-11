@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.random.RandomGenerator;
 
+import it.unibo.fnafretro.ai.Ai;
 import it.unibo.fnafretro.ai.AiDescriptor;
 import it.unibo.fnafretro.map.GameMap;
 
@@ -41,6 +42,11 @@ public interface Game {
      * @return  le stanze nella mappa di questa partita
      */
     GameMap rooms();
+
+    /**
+     * @return  le AI all'interno di questa partita
+     */
+    Set<Ai> ais();
 
     /**
      * Ordina alla partita di terminare.
