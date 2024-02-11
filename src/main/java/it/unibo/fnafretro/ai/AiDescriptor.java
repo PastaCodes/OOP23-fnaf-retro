@@ -34,4 +34,11 @@ public interface AiDescriptor {
      */
     String name();
 
+    /**
+     * @return  il nome della stanza di partenza di questa AI
+     */
+    default String startingRoom() {
+        return "1A";
+    }
+
 }
