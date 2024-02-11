@@ -26,24 +26,24 @@ public final class GameMapImpl implements GameMap {
     }
 
     private void getRoomsValues() {
-        roomsValues.add("1A none 1B");
-        roomsValues.add("1B both 1A 5 7 1C 6 2A 2B");
-        roomsValues.add("1C both 1B");
-        roomsValues.add("5 left 1B");
-        roomsValues.add("7 right 1B");
-        roomsValues.add("3 left 2A");
-        roomsValues.add("6 right 1B");
-        roomsValues.add("2A left 2B 3 1B");
-        roomsValues.add("2B left 2A YOU");
-        roomsValues.add("4A right 1B 4B");
-        roomsValues.add("4B right 4A YOU");
-        roomsValues.add("YOU none 2B 4B");
+        this.roomsValues.add("1A none 1B");
+        this.roomsValues.add("1B both 1A 5 7 1C 6 2A 2B");
+        this.roomsValues.add("1C both 1B");
+        this.roomsValues.add("5 left 1B");
+        this.roomsValues.add("7 right 1B");
+        this.roomsValues.add("3 left 2A");
+        this.roomsValues.add("6 right 1B");
+        this.roomsValues.add("2A left 2B 3 1B");
+        this.roomsValues.add("2B left 2A YOU");
+        this.roomsValues.add("4A right 1B 4B");
+        this.roomsValues.add("4B right 4A YOU");
+        this.roomsValues.add("YOU none 2B 4B");
     }
 
     private void setRoomsValues() {
         String[] room;
         List<Room> adjacentRooms = new ArrayList<>();
-        for (String values : roomsValues) {
+        for (String values : this.roomsValues) {
             room = values.split(" ");
             this.rooms.add(new RoomImpl(room[0], room[1]));
         }
@@ -65,6 +65,11 @@ public final class GameMapImpl implements GameMap {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Room> getAllRooms() {
+        return List.copyOf(this.rooms);
     }
 
     @Override
