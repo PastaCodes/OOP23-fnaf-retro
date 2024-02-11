@@ -9,7 +9,7 @@ import it.unibo.fnafretro.game.Game;
  */
 
 
-public class PowerImpl implements Power {
+class PowerImpl implements Power {
 
     private int energyTicks = 1;
     private double energyLevel = 1.000;

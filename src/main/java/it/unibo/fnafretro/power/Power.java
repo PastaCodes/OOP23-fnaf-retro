@@ -9,7 +9,7 @@ import it.unibo.fnafretro.game.*;
  * @author Davide Sancisi
 */
 
-interface Power {
+public interface Power {
 
     /**
      * Quando un dispositivo viene acceso/spento le tacche di 
