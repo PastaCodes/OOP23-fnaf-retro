@@ -25,9 +25,9 @@ class GameImpl implements Game {
     private final GameMap map = GameMap.create();
     private final Set<Ai> ais;
     private final Power power = Power.create();
-    private final Door leftDoor;
-    private final Door rightDoor;
-    private final Lights lights;
+    private final Door leftDoor = new Door(this.power);
+    private final Door rightDoor = new Door(this.power);
+    private final Lights lights = new Lights(this.power);
 
     GameImpl(
         final Set<AiDescriptor> aiSet,
@@ -35,9 +35,6 @@ class GameImpl implements Game {
     ) {
         this.night = Night.create(this);
         this.ais = Ai.initAis(aiSet, levels, this);
-        this.leftDoor = new Door(this.power);
-        this.rightDoor = new Door(this.power);
-        this.lights = new Lights(this.power);
     }
 
     @Override
@@ -58,6 +55,11 @@ class GameImpl implements Game {
     @Override
     public Set<Ai> ais() {
         return this.ais;
+    }
+
+    @Override
+    public Power power() {
+        return this.power;
     }
 
     @Override

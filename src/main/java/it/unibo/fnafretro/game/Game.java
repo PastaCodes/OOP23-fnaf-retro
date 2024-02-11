@@ -9,6 +9,7 @@ import it.unibo.fnafretro.ai.AiDescriptor;
 import it.unibo.fnafretro.device.Door;
 import it.unibo.fnafretro.device.Lights;
 import it.unibo.fnafretro.map.GameMap;
+import it.unibo.fnafretro.power.Power;
 
 /**
  * Rappresenta una partita in corso.
@@ -49,6 +50,11 @@ public interface Game {
      * @return  le AI all'interno di questa partita
      */
     Set<Ai> ais();
+
+    /**
+     * @return  l'energia all'interno di questa partita
+     */
+    Power power();
 
     /**
      * @return  la porta sinistra controllata dal giocatore
