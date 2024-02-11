@@ -83,7 +83,9 @@ public interface Ai {
      * Determina se l'AI è attualmente attiva e può agire.
      * @return  {@code true} se è attiva, {@code false} altrimenti
      */
-    boolean isActive();
+    default boolean isActive() {
+        return true;
+    }
 
     /**
      * Segnala all'AI di agire, tipicamente muovendosi.
