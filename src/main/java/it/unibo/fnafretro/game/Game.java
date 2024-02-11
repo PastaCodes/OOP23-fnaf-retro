@@ -6,6 +6,8 @@ import java.util.random.RandomGenerator;
 
 import it.unibo.fnafretro.ai.Ai;
 import it.unibo.fnafretro.ai.AiDescriptor;
+import it.unibo.fnafretro.device.Door;
+import it.unibo.fnafretro.device.Lights;
 import it.unibo.fnafretro.map.GameMap;
 
 /**
@@ -47,6 +49,21 @@ public interface Game {
      * @return  le AI all'interno di questa partita
      */
     Set<Ai> ais();
+
+    /**
+     * @return  la porta sinistra controllata dal giocatore
+     */
+    Door leftDoor();
+
+    /**
+     * @return  la porta destra controllata dal giocatore
+     */
+    Door rightDoor();
+
+    /**
+     * @return  le luci controllate dal giocatore
+     */
+    Lights lights();
 
     /**
      * Ordina alla partita di terminare.

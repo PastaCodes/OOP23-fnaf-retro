@@ -7,6 +7,8 @@ import java.util.random.RandomGenerator;
 
 import it.unibo.fnafretro.ai.Ai;
 import it.unibo.fnafretro.ai.AiDescriptor;
+import it.unibo.fnafretro.device.Door;
+import it.unibo.fnafretro.device.Lights;
 import it.unibo.fnafretro.map.GameMap;
 import it.unibo.fnafretro.night.Night;
 
@@ -21,6 +23,9 @@ class GameImpl implements Game {
     private final Night night;
     private final GameMap map = null; // TODO
     private final Set<Ai> ais;
+    private final Door leftDoor = null; // TODO
+    private final Door rightDoor = null; // TODO
+    private final Lights lights = null; // TODO
 
     GameImpl(
         final Set<AiDescriptor> aiSet,
@@ -48,6 +53,21 @@ class GameImpl implements Game {
     @Override
     public Set<Ai> ais() {
         return this.ais;
+    }
+
+    @Override
+    public Door leftDoor() {
+        return this.leftDoor;
+    }
+
+    @Override
+    public Door rightDoor() {
+        return this.rightDoor;
+    }
+
+    @Override
+    public Lights lights() {
+        return this.lights;
     }
 
     @Override
