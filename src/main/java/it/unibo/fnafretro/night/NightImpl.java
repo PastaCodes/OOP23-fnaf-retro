@@ -2,11 +2,11 @@ package it.unibo.fnafretro.night;
 
 import it.unibo.fnafretro.game.Game;
 
-public class NightImpl implements Night {
+class NightImpl implements Night {
     private int hour; // va da 0 a 6, la parte in cui viene scritto il numero va nella grafica
     private final Game game;
 
-    public NightImpl(final Game game) {
+    NightImpl(final Game game) {
         hour = 0;
         this.game = game;
         
