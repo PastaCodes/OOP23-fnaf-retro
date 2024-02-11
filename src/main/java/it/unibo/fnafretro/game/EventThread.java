@@ -57,4 +57,9 @@ public interface EventThread {
      */
     void start();
 
+    /**
+     * Termina il thread di gioco.
+     */
+    void stop();
+
 }
