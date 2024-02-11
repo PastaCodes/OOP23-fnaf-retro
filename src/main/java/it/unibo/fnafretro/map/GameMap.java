@@ -10,6 +10,13 @@ import java.util.List;
 public interface GameMap {
 
     /**
+     * @return un'istanza della classe GameMapImpl
+     */
+    static GameMap create() {
+        return new GameMapImpl();
+    }
+
+    /**
      * restituisce se esiste la stanza richiesta attraverso il nome della stanza.
      * @param roomName nome della stanzache si vuole ottenere
      * @return la stanza con il nome passato come input se esiste
