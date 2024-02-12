@@ -79,7 +79,7 @@ class GameImpl implements Game {
 
     @Override
     public void end(final Game.Ending ending) {
-        this.eventThread.stop();
+        this.eventThread.abort();
         // TODO
     }
 

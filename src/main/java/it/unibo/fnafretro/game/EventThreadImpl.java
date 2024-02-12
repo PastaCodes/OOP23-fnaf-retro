@@ -11,6 +11,7 @@ class EventThreadImpl extends Thread implements EventThread {
 
     private final EventQueue eventQueue = EventQueue.empty();
     private int tick;
+    private boolean stopped;
 
     {
         this.setDaemon(true);
@@ -70,6 +71,9 @@ class EventThreadImpl extends Thread implements EventThread {
                     break;
                 } catch (final InterruptedException e) {
                     synchronized (this) {
+                        if (this.stopped) {
+                            return;
+                        }
                         this.tick = timeToTick(time(), time0);
                         nextTick = Optional.of(this.tick + 1);
                     }
@@ -81,6 +85,12 @@ class EventThreadImpl extends Thread implements EventThread {
                 nextTick = this.eventQueue.nextTick();
             }
         }
+    }
+
+    @Override
+    public synchronized void abort() {
+        this.stopped = true;
+        this.interrupt();
     }
 
 }
