@@ -1,7 +1,5 @@
 package it.unibo.fnafretro;
 
-import java.io.IOException;
-
 import it.unibo.fnafretro.gui.GameGUI;
 
 /**
@@ -14,10 +12,9 @@ public final class Program {
     /**
      * L'entry-point del programma.
      * @param   args    non utilizzati
-     * @throws IOException 
      */
-    public static void main(final String[] args) throws IOException {
-        GameGUI gui = new GameGUI();
+    public static void main(final String[] args) {
+        new GameGUI();
     }
 
 }
