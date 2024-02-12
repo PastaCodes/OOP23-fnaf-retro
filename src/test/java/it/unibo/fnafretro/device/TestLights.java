@@ -23,7 +23,7 @@ class TestLights {
     @Test
     void test() {
         /*
-         * Il gioco parta con le luci spente
+         * Il gioco parte con le luci spente
          */
         assertFalse(this.luci.isLeftLightOn());
         assertFalse(this.luci.isRightLightOn());
