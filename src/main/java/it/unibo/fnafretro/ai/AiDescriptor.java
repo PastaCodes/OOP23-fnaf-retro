@@ -33,9 +33,7 @@ public interface AiDescriptor {
     /**
      * @return  il nome della stanza di partenza di questa AI
      */
-    default String startingRoom() {
-        return "1A";
-    }
+    String startingRoom();
 
     /**
      * @return  le ore della notte in cui questa AI aumenta di livello
