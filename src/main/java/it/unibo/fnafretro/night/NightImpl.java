@@ -1,35 +1,59 @@
 package it.unibo.fnafretro.night;
 
+import it.unibo.fnafretro.ai.Ai;
 import it.unibo.fnafretro.game.Game;
 
+/**
+ * implementazione dell'interfaccia Night.
+ * @author  Luca Ponseggi
+ */
 class NightImpl implements Night {
-    private int hour; // va da 0 a 6, la parte in cui viene scritto il numero va nella grafica
+
+    /**
+     * intero che indica in numero di ore passate dalla mezzanotte.
+     */
+    private int hour;
+
     private final Game game;
 
     NightImpl(final Game game) {
         hour = 0;
         this.game = game;
-        
-        // passo a schedulerepeating i tick per ogni ora di gioco e una
-        // lambda con l'azione che deve eseguire al passare di ogni ora
-        this.game.events().scheduleRepeating(Night.TICKS_PER_GAME_HOUR, this::advance);
 
+        /*
+         * passo a scheduleRepeating i tick per ogni ora di gioco e una
+         * lambda con l'azione che deve eseguire al passare di ogni ora
+         */
+        this.game.events().scheduleRepeating(
+            Night.TICKS_PER_GAME_HOUR, this::advance
+        );
     }
 
     @Override
     public void advance() {
+        /*
+         * Incremento il numero di ore passate
+         */
         this.hour++;
-        
-        //Ogni ai ha il proprio orario a cui aumenta il livello, lo controllo
-        game.ais().forEach(ai -> {
+
+        /*
+         * controllo che il numero di ore sia uguale al numero totali di ore a
+         * notte, in tal caso la partita finisce.
+         */
+        if (this.hour == Night.HOURS_PER_NIGHT) {
+            game.end(true);
+            return;
+        }
+
+        /*
+         * controllo per ogni ai se deve aumentare il proprio livello
+         */
+        for (final Ai ai : game.ais()) {
             if (ai.descriptor().levelUpHours().contains(this.hour)) {
                 ai.increaseLevel();
             }
-        });
-
-        if(this.hour == 6) {
-            game.end(true);
         }
+
     }
 
     @Override
