@@ -27,8 +27,8 @@ public final class GameMapImpl implements GameMap {
 
     private void getRoomsValues() {
         this.roomsValues.add("1A none 1B");
-        this.roomsValues.add("1B both 1A 5 7 1C 6 2A 2B");
-        this.roomsValues.add("1C both 1B");
+        this.roomsValues.add("1B both 1A 5 7 1C 6 2A 4A");
+        this.roomsValues.add("1C none 1B");
         this.roomsValues.add("5 left 1B");
         this.roomsValues.add("7 right 1B");
         this.roomsValues.add("3 left 2A");
