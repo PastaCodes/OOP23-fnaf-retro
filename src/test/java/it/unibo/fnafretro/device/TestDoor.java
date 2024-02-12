@@ -23,7 +23,7 @@ class TestDoor {
     @Test
     void test() {
         /*
-         * Il gioco inizia con la porta aperta (su off)
+         * Il gioco inizia con la porta aperta
         */
         assertFalse(this.porta.isSwitchedOn());
 
