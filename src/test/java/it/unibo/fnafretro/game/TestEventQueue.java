@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author  Marco Buda
+ */
 class TestEventQueue {
 
     private EventQueue eq;
