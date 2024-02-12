@@ -41,7 +41,7 @@ class NightImpl implements Night {
          * notte, in tal caso la partita finisce.
          */
         if (this.hour == Night.HOURS_PER_NIGHT) {
-            game.end(true);
+            game.end(Game.VICTORY);
             return;
         }
 

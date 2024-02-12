@@ -18,6 +18,45 @@ import it.unibo.fnafretro.power.Power;
 public interface Game {
 
     /**
+     * Indica che il giocatore è sopravvissuto fino alle 6.
+     */
+    Ending VICTORY = new Ending();
+
+    /**
+     * Indica il modo in cui si è conclusa una partita.
+     */
+    class Ending {
+
+        private Ending() { }
+
+    }
+
+    /**
+     * Indica che il giocatore è stato aggredito da un mostro.
+     */
+    final class JumpscareEnding extends Ending {
+
+        private final AiDescriptor attacker;
+
+        /**
+         * Crea un finale per la partita in cui il giocatore viene aggredito dal
+         * mostro specificato.
+         * @param   attacker    il mostro che ha aggredito il giocatore
+         */
+        public JumpscareEnding(final AiDescriptor attacker) {
+            this.attacker = attacker;
+        }
+
+        /**
+         * @return  il mostro che ha aggredito il giocatore
+         */
+        public AiDescriptor getAttacker() {
+            return this.attacker;
+        }
+
+    }
+
+    /**
      * Crea una partita secondo le configurazioni specificate.
      * @param   aiSet   le AI da inizializzare in questa partita
      * @param   levels  una funzione che determini l'AI level iniziale per le
@@ -73,10 +112,12 @@ public interface Game {
 
     /**
      * Ordina alla partita di terminare.
-     * @param   hasWon  se impostato a {@code true} segnala che il giocatore ha
-     *                  vinto (ossia la notte è terminata); se impostato a
-     *                  {@code false} segnala che il giocatore ha perso
+     * @param   ending  indica il motivo per cui è terminata la partita; può
+     *                  essere {@link Game#VICTORY} se il giocatore è
+     *                  sopravvissuto fino alle 6, oppure una
+     *                  {@link JumpscareEnding} se è stato aggredito da un
+     *                  mostro
      */
-    void end(boolean hasWon);
+    void end(Ending ending);
 
 }
