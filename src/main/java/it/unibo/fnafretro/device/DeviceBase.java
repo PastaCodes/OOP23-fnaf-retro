@@ -6,13 +6,12 @@ import it.unibo.fnafretro.power.Power;
  * Classe astratta base per i device del gioco.
  * @author Luca Ponseggi
  */
-
 abstract class DeviceBase implements Device {
 
-    private Power power;
+    private final Power power;
     private boolean status;
 
-    public DeviceBase(Power power) {
+    DeviceBase(final Power power) {
         this.power = power;
     }
 
