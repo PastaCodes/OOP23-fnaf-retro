@@ -1,18 +1,17 @@
 package it.unibo.fnafretro.device;
 
-import it.unibo.fnafretro.power.PowerImpl;
+import it.unibo.fnafretro.power.Power;
 
 /**
  * Classe astratta base per i device del gioco.
  * @author Luca Ponseggi
  */
+abstract class DeviceBase implements Device {
 
-public abstract class DeviceBase implements Device {
-
-    private PowerImpl power;
+    private final Power power;
     private boolean status;
 
-    public DeviceBase(PowerImpl power) {
+    DeviceBase(final Power power) {
         this.power = power;
     }
 

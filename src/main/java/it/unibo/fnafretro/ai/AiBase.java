@@ -51,4 +51,12 @@ abstract class AiBase implements Ai {
         this.position = newPosition;
     }
 
+    /**
+     * Comportamento di default, può essere sovrascritto.
+     */
+    @Override
+    public boolean isActive() {
+        return true;
+    }
+
 }

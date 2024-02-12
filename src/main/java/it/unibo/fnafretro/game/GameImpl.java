@@ -11,6 +11,7 @@ import it.unibo.fnafretro.device.Door;
 import it.unibo.fnafretro.device.Lights;
 import it.unibo.fnafretro.map.GameMap;
 import it.unibo.fnafretro.night.Night;
+import it.unibo.fnafretro.power.Power;
 
 /**
  * Implementazione di una partita in corso.
@@ -21,11 +22,12 @@ class GameImpl implements Game {
     private final EventThread eventThread = EventThread.create();
     private final RandomGenerator random = new Random();
     private final Night night;
-    private final GameMap map = null; // TODO
+    private final GameMap map = GameMap.create();
     private final Set<Ai> ais;
-    private final Door leftDoor = null; // TODO
-    private final Door rightDoor = null; // TODO
-    private final Lights lights = null; // TODO
+    private final Power power = Power.create();
+    private final Door leftDoor = new Door(this.power);
+    private final Door rightDoor = new Door(this.power);
+    private final Lights lights = new Lights(this.power);
 
     GameImpl(
         final Set<AiDescriptor> aiSet,
@@ -56,6 +58,11 @@ class GameImpl implements Game {
     }
 
     @Override
+    public Power power() {
+        return this.power;
+    }
+
+    @Override
     public Door leftDoor() {
         return this.leftDoor;
     }
@@ -71,8 +78,8 @@ class GameImpl implements Game {
     }
 
     @Override
-    public void end(final boolean hasWon) {
-        this.eventThread.stop();
+    public void end(final Game.Ending ending) {
+        this.eventThread.abort();
         // TODO
     }
 

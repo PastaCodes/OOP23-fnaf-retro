@@ -9,7 +9,7 @@ public interface EventThread {
     /**
      * Il numero di game tick eseguiti ogni secondo.
      */
-    public int TICKS_PER_SECOND = 20;
+    int TICKS_PER_SECOND = 20;
 
     /**
      * Crea un'istanza pronta ad essere utilizzata.
@@ -60,6 +60,6 @@ public interface EventThread {
     /**
      * Termina il thread di gioco.
      */
-    void stop();
+    void abort();
 
 }
