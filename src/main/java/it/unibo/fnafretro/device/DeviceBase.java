@@ -13,6 +13,7 @@ abstract class DeviceBase implements Device {
 
     DeviceBase(final Power power) {
         this.power = power;
+        this.status = false;
     }
 
     @Override
