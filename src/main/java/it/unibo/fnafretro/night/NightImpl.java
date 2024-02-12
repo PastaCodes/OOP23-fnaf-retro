@@ -30,7 +30,7 @@ class NightImpl implements Night {
     }
 
     @Override
-    public void advance() {
+    public final void advance() {
         /*
          * Incremento il numero di ore passate
          */
