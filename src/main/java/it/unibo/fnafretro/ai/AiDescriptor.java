@@ -31,12 +31,6 @@ public interface AiDescriptor {
     int cooldown();
 
     /**
-     * Usato in fase di debug.
-     * @return  il nome di questa AI
-     */
-    String name();
-
-    /**
      * @return  il nome della stanza di partenza di questa AI
      */
     default String startingRoom() {
