@@ -60,6 +60,6 @@ public interface EventThread {
     /**
      * Termina il thread di gioco.
      */
-    void stop();
+    void abort();
 
 }

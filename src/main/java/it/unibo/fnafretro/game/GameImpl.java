@@ -78,8 +78,8 @@ class GameImpl implements Game {
     }
 
     @Override
-    public void end(final boolean hasWon) {
-        this.eventThread.stop();
+    public void end(final Game.Ending ending) {
+        this.eventThread.abort();
         // TODO
     }
 
