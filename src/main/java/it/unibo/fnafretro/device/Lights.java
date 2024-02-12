@@ -70,7 +70,7 @@ public final class Lights {
     * generico ed utilizza un'istanza di Power per controllare l'alimentazione
     * della luce.
     */
-    private class Light extends DeviceBase {
+    private static class Light extends DeviceBase {
 
         Light(final Power power) {
             super(power);
