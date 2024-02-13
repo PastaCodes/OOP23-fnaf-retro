@@ -12,6 +12,9 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+/**
+ * 
+ */
 public abstract class ImageComponent {
 
     public static BufferedImage loadImage(final String name) {

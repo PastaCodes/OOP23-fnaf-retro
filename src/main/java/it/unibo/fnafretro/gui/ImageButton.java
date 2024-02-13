@@ -9,7 +9,10 @@ import java.util.Optional;
 import java.util.function.Function;
 import javax.swing.JButton;
 
-public class ImageButton extends ImageComponent {
+/**
+ * 
+ */
+public final class ImageButton extends ImageComponent {
 
     private final JButton button = new JButton();
     private final BufferedImage imageOff;

@@ -14,27 +14,47 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 /**
- * Parte grafica del gioco 
+ * Parte grafica del gioco.
  */
 
-public class GameGUI extends JFrame{
+public class GameGUI extends JFrame {
 
+    /**
+     * Rappresenta la larghezza della visuale della finestra di gioco in pixel nativi.
+     */
     public static final int GAME_WIDTH = 160;
+
+    /**
+     * Rappresenta l'altezza della finestra di gioco in pixel nativi.
+     */
     public static final int GAME_HEIGHT = 90;
+
+    /**
+     * Rappresenta la metà della larghezza della porzione della finestra di gioco che non si vede mai.
+     * Spostando la visuale tutta a destra la dead zone di destra diventa 0 e quella di sinistra 48.
+     */
     private static final int DEAD_ZONE = 24;
     private static final int FULL_OFFSET = 48;
     private int gameOffsetX = GameGUI.FULL_OFFSET / 2;
     private int scale = 1;
 
-    public GameGUI(){
+    /**
+     * Costruttore dell'interfaccia principale del gioco.
+     * Viene costruita la finestra dinamica che si sposta seguendo il movimento del mouse
+     * tracciato da un MouseMotionListener.
+     * Ad ogni movimento la "visuale" viene aggiornata con il runnable update.
+     * E' presenta anche un ComponentListener che traccia il ridimensionamento della finestra
+     * facendo un resize proporzionato alla sua dimensione di tutti i componenti di essa.
+     */
+    public GameGUI() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.setBounds(
             GraphicsEnvironment.getLocalGraphicsEnvironment()
                 .getMaximumWindowBounds()
-        );      
+        );
         Insets insets = this.getInsets();
-        this.setMinimumSize(new Dimension(160+insets.left+insets.right, 90+insets.top+insets.bottom));
+        this.setMinimumSize(new Dimension(GAME_WIDTH + insets.left + insets.right, GAME_HEIGHT + insets.top + insets.bottom));
         this.setTitle("Five Nights at Freddy's: Retro");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         this.setIconImage(ImageComponent.loadImage("icon"));
@@ -42,17 +62,27 @@ public class GameGUI extends JFrame{
         this.setBackground(Color.BLACK); 
         this.setLayout(null);
 
-        final ImageLabel background = new ImageLabel(new Rectangle(0, 0, 208, 90), "map/main");
+        final ImageLabel background = new ImageLabel(
+            new Rectangle(0, 0, 208, 90), 
+            "map/main");
         this.add(background.getSwingComponent(), Integer.valueOf(1));
 
-        final ImageButton leftDoorButton = new ImageButton(new Rectangle(3, 39, 6, 6), "door_button_off", "door_button_on");
+        final ImageButton leftDoorButton = new ImageButton(
+            new Rectangle(3, 39, 6, 6), 
+            "door_button_off", "door_button_on");
         this.add(leftDoorButton.getSwingComponent(), Integer.valueOf(2));
-        final ImageButton leftLightsButton = new ImageButton(new Rectangle(3, 46, 6, 6), "lights_button_off", "lights_button_on");
+        final ImageButton leftLightsButton = new ImageButton(
+            new Rectangle(3, 46, 6, 6), 
+            "lights_button_off", "lights_button_on");
         this.add(leftLightsButton.getSwingComponent(), Integer.valueOf(2));
 
-        final ImageButton rightDoorButton = new ImageButton(new Rectangle(199, 39, 6, 6), "door_button_off", "door_button_on");
+        final ImageButton rightDoorButton = new ImageButton(
+            new Rectangle(199, 39, 6, 6), 
+            "door_button_off", "door_button_on");
         this.add(rightDoorButton.getSwingComponent(), Integer.valueOf(2));
-        final ImageButton rightLightsButton = new ImageButton(new Rectangle(199, 46, 6, 6), "lights_button_off", "lights_button_on");
+        final ImageButton rightLightsButton = new ImageButton(
+            new Rectangle(199, 46, 6, 6), 
+            "lights_button_off", "lights_button_on");
         this.add(rightLightsButton.getSwingComponent(), Integer.valueOf(2));
 
         final Runnable update = () -> {

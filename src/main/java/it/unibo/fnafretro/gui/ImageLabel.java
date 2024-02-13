@@ -9,7 +9,7 @@ import java.util.function.Function;
 
 import javax.swing.JLabel;
 
-public class ImageLabel extends ImageComponent {
+public final class ImageLabel extends ImageComponent {
 
     private final JLabel label = new JLabel();
     private final BufferedImage image;
@@ -37,5 +37,5 @@ public class ImageLabel extends ImageComponent {
     public Component getSwingComponent() {
         return this.label;
     }
-    
+
 }

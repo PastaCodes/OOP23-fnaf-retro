@@ -7,24 +7,21 @@ import it.unibo.fnafretro.game.Game;
  * Implementazione dell'energia. 
  * @author Davide Sancisi
  */
-
-
 class PowerImpl implements Power {
 
     private int energyTicks = 1;
     private double energyLevel = 1.000;
-    final double ENERGY_TICK_COST = 0.002;
+    private static final double ENERGY_TICK_COST = 0.002;
 
     @Override
     public void applyEnergyCost() {
         double totalEnergyCost;
-        totalEnergyCost = this.energyTicks*this.ENERGY_TICK_COST;
-        if(this.energyLevel > totalEnergyCost) {
+        totalEnergyCost = this.energyTicks * ENERGY_TICK_COST;
+        if (this.energyLevel > totalEnergyCost) {
             this.energyLevel -= totalEnergyCost;
-        }else{
+        } else {
             this.energyLevel = 0.000;
         }
-        
     }
 
     @Override
@@ -43,7 +40,7 @@ class PowerImpl implements Power {
     }
 
     @Override
-    public void init(Game game) {
+    public void init(final Game game) {
         game.events().scheduleRepeating(EventThread.TICKS_PER_SECOND, this::applyEnergyCost);
     }
 
@@ -53,12 +50,12 @@ class PowerImpl implements Power {
     }
 
     @Override
-    public void subtractEnergy(double amount) {
-        if(this.energyLevel > amount) {
+    public void subtractEnergy(final double amount) {
+        if (this.energyLevel > amount) {
             this.energyLevel -= amount;
-        }else {
+        } else {
             this.energyLevel = 0.000;
         }
     }
-    
+
 }
