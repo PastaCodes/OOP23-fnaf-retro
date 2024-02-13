@@ -19,7 +19,12 @@ class PowerImpl implements Power {
     public void applyEnergyCost() {
         double totalEnergyCost;
         totalEnergyCost = this.energyTicks*this.ENERGY_TICK_COST;
-        this.energyLevel -= totalEnergyCost;
+        if(this.energyLevel > totalEnergyCost) {
+            this.energyLevel -= totalEnergyCost;
+        }else{
+            this.energyLevel = 0.000;
+        }
+        
     }
 
     @Override
@@ -45,6 +50,15 @@ class PowerImpl implements Power {
     @Override
     public int getTicks() {
         return this.energyTicks;
+    }
+
+    @Override
+    public void subtractEnergy(double amount) {
+        if(this.energyLevel > amount) {
+            this.energyLevel -= amount;
+        }else {
+            this.energyLevel = 0.000;
+        }
     }
     
 }

@@ -29,6 +29,8 @@ public interface Power {
 
     int getTicks();
 
+    void subtractEnergy(double amount); 
+
     double getEnergyLevel();
 
     public static Power create() {
