@@ -1,6 +1,6 @@
 package it.unibo.fnafretro.power;
 
-import it.unibo.fnafretro.game.*;
+import it.unibo.fnafretro.game.Game;
 
 /** 
  * Power: rappresenta il livello di energia del gioco. 
@@ -8,7 +8,6 @@ import it.unibo.fnafretro.game.*;
  * L'energia si ricarica col tempo.
  * @author Davide Sancisi
 */
-
 public interface Power {
 
     /**
@@ -21,22 +20,44 @@ public interface Power {
      */
     void applyEnergyCost();
 
+    /**
+     * aggiunge la schedulazione dell'evento applyEnergyCost al gioco.
+     * @param game la classe che gestisce la schedulazione degli eventi del gioco.
+     */
     void init(Game game);
 
+    /**
+     * aggiunge un tick di energia in utilizzo.
+     */
     void addTick();
 
+    /**
+     * toglie un tick di energia in utilizzo.
+     */
     void removeTick();
 
+    /**
+     * @return il numero di tick di energia attivi al momento.
+     */
     int getTicks();
 
+    /**
+     * Sottrae una quantità di energia dall'energia totale.
+     * @param amount la quantità di energia da sottrarre all'energia totale.
+     */
     void subtractEnergy(double amount); 
 
+    /**
+     * @return il livello di energia attuale.
+     */
     double getEnergyLevel();
 
-    public static Power create() {
+    /**
+     * Funzione statica usata nei Test.
+     * @return una nuova istanza di PowerImpl.
+     */
+    static Power create() {
         return new PowerImpl();
     }
-    
+
 }
-
-
