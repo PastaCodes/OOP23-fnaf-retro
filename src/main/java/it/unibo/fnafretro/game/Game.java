@@ -9,6 +9,7 @@ import it.unibo.fnafretro.ai.AiDescriptor;
 import it.unibo.fnafretro.device.Door;
 import it.unibo.fnafretro.device.Lights;
 import it.unibo.fnafretro.map.GameMap;
+import it.unibo.fnafretro.night.Night;
 import it.unibo.fnafretro.power.Power;
 
 /**
@@ -109,6 +110,11 @@ public interface Game {
      * @return  le luci controllate dal giocatore
      */
     Lights lights();
+
+    /**
+     * @return  l'oggetto che gestisce la progressione della notte
+     */
+    Night nightProgression();
 
     /**
      * Ordina alla partita di terminare.

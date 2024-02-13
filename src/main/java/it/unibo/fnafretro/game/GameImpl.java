@@ -78,6 +78,11 @@ class GameImpl implements Game {
     }
 
     @Override
+    public Night nightProgression() {
+        return this.night;
+    }
+
+    @Override
     public void end(final Game.Ending ending) {
         this.eventThread.abort();
         // TODO
