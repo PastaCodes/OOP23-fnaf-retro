@@ -3,10 +3,12 @@ package it.unibo.fnafretro.device;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.fnafretro.power.Power;
+import it.unibo.fnafretro.game.Game;
 
 /**
  * @author  Luca Ponseggi
@@ -17,7 +19,8 @@ class TestLights {
 
     @BeforeEach
     void init() {
-        this.luci = new Lights(Power.create());
+        final Game fauxGame = Game.create(Set.of(), null, () -> { }, e -> { });
+        this.luci = new Lights(fauxGame);
     }
 
     @Test
@@ -36,7 +39,7 @@ class TestLights {
         assertTrue(this.luci.isLeftLightOn());
 
         /*
-         * Accendo la luce a destra: quella a sinistra dovrà spegnersi
+         * Accendo la luce a destra: quella a sinistra dovrÃ  spegnersi
          */
         this.luci.switchOnRightLight();
         assertTrue(this.luci.isRightLightOn());

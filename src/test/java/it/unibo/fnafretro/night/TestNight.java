@@ -17,7 +17,7 @@ class TestNight {
 
     @BeforeEach
     void init() {
-        this.notte = Night.create(Game.create(Set.of(), null));
+        this.notte = Night.create(Game.create(Set.of(), null, () -> { }, e -> { }));
     }
 
      @Test

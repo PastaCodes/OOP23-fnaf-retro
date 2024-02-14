@@ -3,10 +3,12 @@ package it.unibo.fnafretro.device;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.fnafretro.power.Power;
+import it.unibo.fnafretro.game.Game;
 
 /**
  * @author  Luca Ponseggi
@@ -17,7 +19,8 @@ class TestDoor {
 
     @BeforeEach
     void init() {
-        this.porta = new Door(Power.create());
+        final Game fauxGame = Game.create(Set.of(), null, () -> { }, e -> { });
+        this.porta = new Door(fauxGame);
     }
 
     @Test
