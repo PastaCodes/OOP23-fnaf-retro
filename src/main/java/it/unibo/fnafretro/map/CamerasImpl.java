@@ -6,43 +6,43 @@ package it.unibo.fnafretro.map;
  */
 public final class CamerasImpl implements Cameras {
 
-    private Room currentRoom;
-    private boolean enabled;
-    private boolean greyScreen;
+    private String currentRoom;
+    private boolean active;
+    private boolean disturbed;
 
-    CamerasImpl(final Room startingRoom) {
+    CamerasImpl(final String startingRoom) {
         this.currentRoom = startingRoom;
-        this.enabled = false;
-        this.greyScreen = false;
+        this.active = false;
+        this.disturbed = false;
     }
 
     @Override
-    public boolean getStatus() {
-        return this.enabled;
+    public boolean areActive() {
+        return this.active;
     }
 
     @Override
-    public void setStatus(final boolean status) {
-        this.enabled = status;
+    public void setActive(final boolean active) {
+        this.active = active;
     }
 
     @Override
-    public boolean getGreyScreen() {
-        return this.greyScreen;
+    public boolean areDisturbed() {
+        return this.disturbed;
     }
 
     @Override
-    public void setGreyScreen(final boolean greyScreen) {
-        this.greyScreen = greyScreen;
+    public void setDisturbed(final boolean disturbed) {
+        this.disturbed = disturbed;
     }
 
     @Override
-    public Room getCurrentRoom() {
+    public String getCurrentRoom() {
         return this.currentRoom;
     }
 
     @Override
-    public void setCurrentRoom(final Room newRoom) {
+    public void setCurrentRoom(final String newRoom) {
         this.currentRoom = newRoom;
     }
 
