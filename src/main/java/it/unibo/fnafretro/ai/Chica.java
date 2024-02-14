@@ -17,8 +17,11 @@ public final class Chica extends AiDescriptorBase {
 
     private static final int COOLDOWN = 99;
 
-    Chica() {
-        super(Chica.COOLDOWN, Set.of(3, 4));
+    /**
+     * Costruisce le caratteristiche di Chica.
+     */
+    public Chica() {
+        super(Chica.COOLDOWN, Set.of(3, 4), "chica");
     }
 
     @Override

@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Map;
 
 import it.unibo.fnafretro.game.Game;
-import it.unibo.fnafretro.map.Cameras;
 
 /**
  * Oltre ad aggredire il giocatore quando esaurisce l'energia, Freddy segue un
@@ -30,8 +29,11 @@ public final class Freddy extends AiDescriptorBase {
         "4A", "4B"
     );
 
-    Freddy() {
-        super(Freddy.COOLDOWN, Collections.emptySet());
+    /**
+     * Costruisce le caratteristiche di Freddy.
+     */
+    public Freddy() {
+        super(Freddy.COOLDOWN, Collections.emptySet(), "freddy");
     }
 
     @Override
@@ -42,20 +44,19 @@ public final class Freddy extends AiDescriptorBase {
 
             @Override
             public boolean isActive() {
-                final Cameras cams = game.rooms().getCameras();
                 if (this.phase == 1) {
                     /*
                      * Nella fase di attacco può muoversi solo se il giocatore
                      * sta guardando le telecamere, ma non la 4B.
                      */
-                    return  cams.getStatus()
-                    &&      !"4B".equals(cams.getCurrentRoom().getRoomName());
+                    return  game.cameras().areActive()
+                    &&      !"4B".equals(game.cameras().getCurrentRoom());
                 }
                 /*
                  * Nella fase normale, oppure quando si trova nell'ufficio,
                  * non può muoversi se il giocatore sta guardando le telecamere.
                  */
-                return !cams.getStatus();
+                return !game.cameras().areActive();
             }
 
             @Override

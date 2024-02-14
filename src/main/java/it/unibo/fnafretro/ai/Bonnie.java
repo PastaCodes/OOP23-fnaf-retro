@@ -16,8 +16,11 @@ public final class Bonnie extends AiDescriptorBase {
 
     private static final int COOLDOWN = 98;
 
-    Bonnie() {
-        super(Bonnie.COOLDOWN, Set.of(2, 3, 4));
+    /**
+     * Costruisce le caratteristiche di Bonnie.
+     */
+    public Bonnie() {
+        super(Bonnie.COOLDOWN, Set.of(2, 3, 4), "bonnie");
     }
 
     @Override
