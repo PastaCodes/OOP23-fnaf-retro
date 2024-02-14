@@ -1,6 +1,6 @@
 package it.unibo.fnafretro.device;
 
-import it.unibo.fnafretro.power.Power;
+import it.unibo.fnafretro.game.Game;
 
 /**
  * Classe per la gestione e sincronizzazione fra le luci con la classe Light 
@@ -14,11 +14,11 @@ public final class Lights {
 
     /**
      * Costruisce un'istanza di Lights che gestisce due luci, sinistra e destra.
-     * @param power gestione dell'energia
+     * @param   game    la partita in cui vengono istanziate le luci
      */
-    public Lights(final Power power) {
-        this.left = new Light(power);
-        this.right = new Light(power);
+    public Lights(final Game game) {
+        this.left = new Light(game);
+        this.right = new Light(game);
     }
 
     /**
@@ -72,8 +72,8 @@ public final class Lights {
     */
     private static class Light extends DeviceBase {
 
-        Light(final Power power) {
-            super(power);
+        Light(final Game game) {
+            super(game);
         }
 
     }

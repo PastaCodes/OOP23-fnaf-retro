@@ -1,6 +1,6 @@
 package it.unibo.fnafretro.device;
 
-import it.unibo.fnafretro.power.Power;
+import it.unibo.fnafretro.game.Game;
 
 /**
  * Classe per la gestione della porta.
@@ -11,10 +11,10 @@ public class Door extends DeviceBase {
     /**
      * Costruisce un'istanza di Door che gestisce l'apertura e la chiusura di
      * una porta.
-     * @param power gestione dell'energia
+     * @param   game    la partita in cui viene istanziata la porta
      */
-    public Door(final Power power) {
-        super(power);
+    public Door(final Game game) {
+        super(game);
     }
 
 }
