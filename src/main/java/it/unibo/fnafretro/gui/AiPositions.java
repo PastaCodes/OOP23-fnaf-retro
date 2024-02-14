@@ -10,17 +10,20 @@ import it.unibo.fnafretro.ai.Bonnie;
 import it.unibo.fnafretro.ai.Chica;
 import it.unibo.fnafretro.ai.Foxy;
 import it.unibo.fnafretro.ai.Freddy;
-import it.unibo.fnafretro.map.Room;
 
-public class AiPositions {
+/**
+ * Classe di utility utilizzata per determinare la posizione e la dimensione
+ * dei mostri a seconda della stanza in cui si trovano.
+ * @author  Marco Buda
+ */
+public final class AiPositions {
 
     private static final Map<Class<? extends AiDescriptor>, Map<String, Point>> POSITIONS = Map.of(
         Freddy.class, Map.of(
             "1A", new Point(88, 17),
             "1B", new Point(28, -21),
             "4A", new Point(109, 21),
-            "4B", new Point(7, -12),
-            "YOU", new Point(-16, 8) // nascosto
+            "4B", new Point(7, -12)
         ),
         Bonnie.class, Map.of(
             "1A", new Point(62, 9),
@@ -28,16 +31,14 @@ public class AiPositions {
             "2A", new Point(50, 22),
             "2B", new Point(71, -22),
             "3", new Point(84, 4),
-            "5", new Point(114, 22),
-            "YOU", new Point(27, 9)
+            "5", new Point(114, 22)
         ),
         Chica.class, Map.of(
             "1A", new Point(106, 9),
             "1B", new Point(50, 40),
             "4A", new Point(56, 25),
             "4B", new Point(87, 2),
-            "7", new Point(37, 11),
-            "YOU", new Point(152, 9)
+            "7", new Point(37, 11)
         )
     );
 
@@ -60,21 +61,37 @@ public class AiPositions {
         new Point(59, 15)
     );
 
-    public static Point getPosition(final Ai ai, final Room room) {
+    /**
+     * Determina la posizione in cui il mostro specificato deve essere disegnato
+     * all'interno della spanza specificata.
+     * @param   ai      il mostro
+     * @param   room    la stanza in cui si trova
+     * @return          la posizione (in game pixel) in cui disegnarlo
+     */
+    public static Point getPosition(final Ai ai, final String room) {
         if (ai instanceof Foxy.FoxyAi foxy) {
             // Assumo che sia nella stanza 1C.
             return AiPositions.FOXY_PHASES.get(foxy.getPhase());
         }
         return AiPositions.POSITIONS.get(ai.descriptor().getClass())
-            .get(room.getRoomName());
+            .get(room);
     }
 
-    public static int getScale(final Ai ai, final Room room) {
+    /**
+     * Determina il fattore di scala con cui il mostro specificato deve essere
+     * disegnato all'interno della spanza specificata.
+     * @param   ai      il mostro
+     * @param   room    la stanza in cui si trova
+     * @return          il fattore di scala da utilizzare
+     */
+    public static int getScale(final Ai ai, final String room) {
         if (ai instanceof Foxy.FoxyAi) {
             return 1;
         }
         return AiPositions.SCALES.get(ai.descriptor().getClass())
-            .getOrDefault(room.getRoomName(), 1);
+            .getOrDefault(room, 1);
     }
+
+    private AiPositions() { }
 
 }
