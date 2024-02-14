@@ -19,7 +19,7 @@ class TestAi {
     private Ai ai;
 
     @BeforeEach void init() {
-        final AiDescriptor fauxDescriptor = new AiDescriptorBase(0, Set.of()) {
+        final AiDescriptor fauxDescriptor = new AiDescriptorBase(0, Set.of(), "") {
 
             @Override
             public Ai create(final Game game, final int initialLevel) {
@@ -34,7 +34,7 @@ class TestAi {
             }
 
         };
-        final Game fauxGame = Game.create(Set.of(fauxDescriptor), any -> 0);
+        final Game fauxGame = Game.create(Set.of(fauxDescriptor), any -> 0, () -> { }, e -> { });
         this.ai = fauxGame.ais().stream().findFirst().get();
     }
 
