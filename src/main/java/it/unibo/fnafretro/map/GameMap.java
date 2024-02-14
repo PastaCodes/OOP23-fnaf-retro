@@ -29,13 +29,8 @@ public interface GameMap {
     List<Room> getAllRooms();
 
     /**
-     * @return le telecamere presenti nella mappa di gioco
-     */
-    Cameras getCameras();
-
-    /**
      * 
-     * @param room è la stanza della quale si volgiono sapere le stanze adiacenti
+     * @param room Ã¨ la stanza della quale si volgiono sapere le stanze adiacenti
      * @return le stanze adiacenti a quella fornita in input
      * 
      */
