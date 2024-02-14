@@ -1,6 +1,6 @@
 package it.unibo.fnafretro.device;
 
-import it.unibo.fnafretro.power.Power;
+import it.unibo.fnafretro.game.Game;
 
 /**
  * Classe astratta base per i device del gioco.
@@ -8,11 +8,11 @@ import it.unibo.fnafretro.power.Power;
  */
 abstract class DeviceBase implements Device {
 
-    private final Power power;
+    private final Game game;
     private boolean status;
 
-    DeviceBase(final Power power) {
-        this.power = power;
+    DeviceBase(final Game game) {
+        this.game = game;
         this.status = false;
     }
 
@@ -23,14 +23,20 @@ abstract class DeviceBase implements Device {
 
     @Override
     public void switchOff() {
-        this.status = false;
-        this.power.removeTick();
+        if (this.status) {
+            this.status = false;
+            this.game.power().removeTick();
+            this.game.update();
+        }
     }
 
     @Override
     public void switchOn() {
-        this.status = true;
-        this.power.addTick();
+        if (!this.status) {
+            this.status = true;
+            this.game.power().addTick();
+            this.game.update();
+        }
     }
 
 }
