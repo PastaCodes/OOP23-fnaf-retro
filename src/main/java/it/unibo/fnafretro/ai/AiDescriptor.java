@@ -40,4 +40,10 @@ public interface AiDescriptor {
      */
     Set<Integer> levelUpHours();
 
+    /**
+     * @return  il nome utilizzato per accedere alle risorse di questo
+     *          personaggio
+     */
+    String resourceName();
+
 }

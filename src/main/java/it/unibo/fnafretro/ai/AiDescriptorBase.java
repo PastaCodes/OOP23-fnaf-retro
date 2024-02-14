@@ -10,13 +10,16 @@ abstract class AiDescriptorBase implements AiDescriptor {
 
     private final int cooldown;
     private final Set<Integer> levelUpHours;
+    private final String resourceName;
 
     AiDescriptorBase(
         final int cooldown,
-        final Set<Integer> levelUpHours
+        final Set<Integer> levelUpHours,
+        final String resourceName
     ) {
         this.cooldown = cooldown;
         this.levelUpHours = levelUpHours;
+        this.resourceName = resourceName;
     }
 
     @Override
@@ -35,6 +38,11 @@ abstract class AiDescriptorBase implements AiDescriptor {
     @Override
     public Set<Integer> levelUpHours() {
         return this.levelUpHours;
+    }
+
+    @Override
+    public String resourceName() {
+        return this.resourceName;
     }
 
 }
