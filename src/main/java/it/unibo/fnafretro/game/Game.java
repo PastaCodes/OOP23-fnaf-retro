@@ -1,6 +1,7 @@
 package it.unibo.fnafretro.game;
 
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.random.RandomGenerator;
 
@@ -8,6 +9,7 @@ import it.unibo.fnafretro.ai.Ai;
 import it.unibo.fnafretro.ai.AiDescriptor;
 import it.unibo.fnafretro.device.Door;
 import it.unibo.fnafretro.device.Lights;
+import it.unibo.fnafretro.map.Cameras;
 import it.unibo.fnafretro.map.GameMap;
 import it.unibo.fnafretro.night.Night;
 import it.unibo.fnafretro.power.Power;
@@ -59,16 +61,22 @@ public interface Game {
 
     /**
      * Crea una partita secondo le configurazioni specificate.
-     * @param   aiSet   le AI da inizializzare in questa partita
-     * @param   levels  una funzione che determini l'AI level iniziale per le
-     *                  singole AI
-     * @return          la partita creata
+     * @param   aiSet           le AI da inizializzare in questa partita
+     * @param   levels          una funzione che determini l'AI level iniziale
+     *                          per le singole AI
+     * @param   updateSignal    l'azione invocata per avvisare le interfacce
+     *                          grafiche che c'è stato un cambiamento
+     * @param   endSignal       l'azione invocata per avvisare le interfacce
+     *                          grafiche cha la partita è terminata
+     * @return                  la partita creata
      */
     static Game create(
         final Set<AiDescriptor> aiSet,
-        final Function<AiDescriptor, Integer> levels
+        final Function<AiDescriptor, Integer> levels,
+        final Runnable updateSignal,
+        final Consumer<Game.Ending> endSignal
     ) {
-        return new GameImpl(aiSet, levels);
+        return new GameImpl(aiSet, levels, updateSignal, endSignal);
     }
 
     /**
@@ -85,6 +93,11 @@ public interface Game {
      * @return  le stanze nella mappa di questa partita
      */
     GameMap rooms();
+
+    /**
+     * @return  le telecamere presenti nella mappa di gioco
+     */
+    Cameras cameras();
 
     /**
      * @return  le AI all'interno di questa partita
@@ -118,6 +131,7 @@ public interface Game {
 
     /**
      * Ordina alla partita di terminare.
+     * Si assume che venga chiamato dal thread di gioco.
      * @param   ending  indica il motivo per cui è terminata la partita; può
      *                  essere {@link Game#VICTORY} se il giocatore è
      *                  sopravvissuto fino alle 6, oppure una
@@ -125,5 +139,10 @@ public interface Game {
      *                  mostro
      */
     void end(Ending ending);
+
+    /**
+     * Informa le interfacce grafiche che c'è stato un cambiamento.
+     */
+    void update();
 
 }
