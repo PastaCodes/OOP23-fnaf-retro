@@ -56,7 +56,18 @@ public interface Ai {
                         ai.isActive()
                     &&  game.random().nextInt(Ai.MAX_LEVEL) < ai.getLevel()
                     ) {
+                        if (ai.getPosition().getRoomName().equals(
+                            game.cameras().getCurrentRoom()
+                        )) {
+                            game.cameras().setDisturbed(true);
+                        }
                         ai.act();
+                        if (ai.getPosition().getRoomName().equals(
+                            game.cameras().getCurrentRoom()
+                        )) {
+                            game.cameras().setDisturbed(true);
+                        }
+                        game.update();
                     }
                 }
             );
