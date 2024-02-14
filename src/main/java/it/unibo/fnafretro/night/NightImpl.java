@@ -41,7 +41,7 @@ class NightImpl implements Night {
          * notte, in tal caso la partita finisce.
          */
         if (this.hour == Night.HOURS_PER_NIGHT) {
-            game.end(Game.VICTORY);
+            this.game.end(Game.VICTORY);
             return;
         }
 
@@ -49,16 +49,20 @@ class NightImpl implements Night {
          * controllo per ogni ai se deve aumentare il proprio livello
          */
         for (final Ai ai : game.ais()) {
-            if (ai.descriptor().levelUpHours().contains(this.hour)) {
+            if (
+                ai.descriptor().levelUpHours().contains(this.hour)
+            &&  ai.getLevel() > 0
+            ) {
                 ai.increaseLevel();
             }
         }
 
+        this.game.update();
     }
 
     @Override
     public int getHour() {
-        return hour;
+        return this.hour;
     }
 
 }
