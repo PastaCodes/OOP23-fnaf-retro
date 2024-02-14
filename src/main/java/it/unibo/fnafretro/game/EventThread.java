@@ -59,6 +59,7 @@ public interface EventThread {
 
     /**
      * Termina il thread di gioco.
+     * Si assume che venga chiamato dal thread di gioco stesso.
      */
     void abort();
 

@@ -71,9 +71,6 @@ class EventThreadImpl extends Thread implements EventThread {
                     break;
                 } catch (final InterruptedException e) {
                     synchronized (this) {
-                        if (this.stopped) {
-                            return;
-                        }
                         this.tick = timeToTick(time(), time0);
                         nextTick = Optional.of(this.tick + 1);
                     }
@@ -82,15 +79,22 @@ class EventThreadImpl extends Thread implements EventThread {
             synchronized (this) {
                 this.tick = nextTick.get();
                 this.eventQueue.pullBefore(this.tick).forEach(Runnable::run);
+                if (this.stopped) {
+                    break;
+                }
                 nextTick = this.eventQueue.nextTick();
             }
         }
     }
 
     @Override
-    public synchronized void abort() {
-        this.stopped = true;
-        this.interrupt();
+    public void abort() {
+        /**
+         * Anche qui la sincronizzazione non sarebbe necessaria.
+         */
+        synchronized (this) {
+            this.stopped = true;
+        }
     }
 
 }
