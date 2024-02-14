@@ -11,6 +11,12 @@ import it.unibo.fnafretro.game.Game;
 public interface Power {
 
     /**
+     * La quantità di energia che viene detratta per ogni tacca di utilizzo, una
+     * volta ogni secondo.
+     */
+    double ENERGY_TICK_COST = 0.004;
+
+    /**
      * Quando un dispositivo viene acceso/spento le tacche di 
      * uso aumentano/diminuiscono di 1. 
      * Ogni {@link EventThread#TICKS_PER_SECOND} dall'energia totale viene tolta una porzione calcolata
@@ -21,43 +27,38 @@ public interface Power {
     void applyEnergyCost();
 
     /**
-     * aggiunge la schedulazione dell'evento applyEnergyCost al gioco.
-     * @param game la classe che gestisce la schedulazione degli eventi del gioco.
+     * Rimuove la quantità di energia specificata dalla riserva.
+     * @param   amount  la quantità da sottrarre
      */
-    void init(Game game);
+    void subtractEnergy(double amount);
 
     /**
-     * aggiunge un tick di energia in utilizzo.
+     * Aggiunge una tacca di utilizzo dell'energia.
      */
     void addTick();
 
     /**
-     * toglie un tick di energia in utilizzo.
+     * Rimuove una tacca di utilizzo dell'energia.
      */
     void removeTick();
 
     /**
-     * @return il numero di tick di energia attivi al momento.
+     * @return  il numero di tacche dell'energia attualmente in uso
      */
     int getTicks();
 
     /**
-     * Sottrae una quantità di energia dall'energia totale.
-     * @param amount la quantità di energia da sottrarre all'energia totale.
-     */
-    void subtractEnergy(double amount); 
-
-    /**
-     * @return il livello di energia attuale.
+     * @return  il livello di energia rimasto, compreso nel range [0,1]
      */
     double getEnergyLevel();
 
     /**
-     * Funzione statica usata nei Test.
-     * @return una nuova istanza di PowerImpl.
+     * Crea un gestore dell'energia per la partita specificata.
+     * @param   game    la partita che sta venendo inizializzata
+     * @return          un gestore dell'energia
      */
-    static Power create() {
-        return new PowerImpl();
+    static Power create(final Game game) {
+        return new PowerImpl(game);
     }
 
 }

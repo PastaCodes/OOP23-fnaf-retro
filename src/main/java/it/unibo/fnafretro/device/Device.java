@@ -7,17 +7,18 @@ package it.unibo.fnafretro.device;
 public interface Device {
 
     /**
-     * accende il dispositivo.
+     * Attiva il dispositivo.
      */
     void switchOn();
 
     /**
-     * spegne il dispositivo.
+     * Disttiva il dispositivo.
      */
     void switchOff();
 
     /**
-     * @return true se il dispositivo acceso, false se il dispositivo è spento.
+     * @return  {@code true} se il dispositivo Ã¨ attivo, {@code false}
+     *          altrimenti
      */
     boolean isSwitchedOn();
 

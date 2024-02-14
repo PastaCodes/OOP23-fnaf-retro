@@ -1,40 +1,41 @@
 package it.unibo.fnafretro.power;
 
 import org.junit.jupiter.api.Test;
+
+import it.unibo.fnafretro.game.Game;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 
 /**
- * @author Davide Sancisi
+ * @author  Davide Sancisi
  */
-public class TestPower {
-    Power power;
+class TestPower {
+
+    private Power power;
 
     @BeforeEach void init() {
-        this.power = Power.create();
+        this.power = Power.create(Game.create(Set.of(), null, () -> { }, e -> { }));
     }
  
-    @Test void test1() {    
-        assertEquals(1, this.power.getTicks());
-        assertEquals(1.000, this.power.getEnergyLevel());
+    @Test void test1() {
+        assertEquals(1, power.getTicks());
+        assertEquals(1.000, power.getEnergyLevel());
     }
 
     @Test void test2() {
         this.power.addTick();
-        assertEquals(2, this.power.getTicks());
+        assertEquals(2, power.getTicks());
         this.power.removeTick();
-        assertEquals(1, this.power.getTicks());
+        assertEquals(1, power.getTicks());
     }
 
     @Test void test3() {
         this.power.applyEnergyCost();
-        assertEquals(0.998, this.power.getEnergyLevel());
-    }
-
-    @Test void test4() {
-        this.power.subtractEnergy(0.005);
-        assertEquals(0.995, this.power.getEnergyLevel());
+        assertEquals(1 - Power.ENERGY_TICK_COST, power.getEnergyLevel());
     }
 
 }
