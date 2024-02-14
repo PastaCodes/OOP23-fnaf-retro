@@ -1,6 +1,6 @@
 package it.unibo.fnafretro;
 
-import it.unibo.fnafretro.gui.GameGUI;
+import it.unibo.fnafretro.gui.FnafrWindow;
 
 /**
  * Classe di utility contenente l'entry-point del programma.
@@ -14,7 +14,7 @@ public final class Program {
      * @param   args    non utilizzati
      */
     public static void main(final String[] args) {
-        new GameGUI();
+        new FnafrWindow();
     }
 
 }
