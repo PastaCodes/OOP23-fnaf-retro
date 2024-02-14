@@ -10,22 +10,20 @@ import java.util.Map;
  * @author Filippo Del Bianco
  */
 public final class GameMapImpl implements GameMap {
-    private final List<Room> rooms;
-    private final Cameras cameras;
-    private final Map<Room, List<Room>> adjacencies;
 
+    private final List<Room> rooms;
+    private final Map<Room, List<Room>> adjacencies;
     private final List<String> roomsValues;
 
     GameMapImpl() {
         this.rooms = new ArrayList<>();
         this.adjacencies = new HashMap<>();
         this.roomsValues = new ArrayList<>();
-        getRoomsValues();
+        initRoomsValues();
         setRoomsValues();
-        this.cameras = new CamerasImpl(getRoom("1A"));
     }
 
-    private void getRoomsValues() {
+    private void initRoomsValues() {
         this.roomsValues.add("1A none 1B");
         this.roomsValues.add("1B both 1A 5 7 1C 6 2A 4A");
         this.roomsValues.add("1C none 1B");
@@ -42,12 +40,12 @@ public final class GameMapImpl implements GameMap {
 
     private void setRoomsValues() {
         String[] room;
-        List<Room> adjacentRooms = new ArrayList<>();
-        for (String values : this.roomsValues) {
+        final List<Room> adjacentRooms = new ArrayList<>();
+        for (final String values : this.roomsValues) {
             room = values.split(" ");
             this.rooms.add(new RoomImpl(room[0], room[1]));
         }
-        for (String values : roomsValues) {
+        for (final String values : roomsValues) {
             room = values.split(" ");
             for (int i = 2; i < room.length; i++) {
                 adjacentRooms.add(getRoom(room[i]));
@@ -59,7 +57,7 @@ public final class GameMapImpl implements GameMap {
 
     @Override
     public Room getRoom(final String roomName) {
-        for (Room room : this.rooms) {
+        for (final Room room : this.rooms) {
             if (room.getRoomName().equals(roomName)) {
                 return room;
             }
@@ -70,11 +68,6 @@ public final class GameMapImpl implements GameMap {
     @Override
     public List<Room> getAllRooms() {
         return List.copyOf(this.rooms);
-    }
-
-    @Override
-    public Cameras getCameras() {
-        return this.cameras;
     }
 
     @Override
