@@ -49,6 +49,8 @@ Il gruppo si pone l'obiettivo di realizzare un videogioco survival horror punta 
 
 - Deve far avanzare la notte fino alle ore 6:00, raggiunte le quali la partita si conclude con la vittoria del giocatore
 
+- (Opzionale) Deve emettere effetti sonori al click dei bottoni nel menù e nel gioco, alla vittoria e alla sconfitta del giocatore
+
 #### Requisiti non funzionali
 
 - L'interfaccia deve essere immediata e simile al gioco originale
