@@ -348,28 +348,6 @@ classDiagram
 
 #### 2.2.3 Luca Ponseggi
 
-#### Accensione e spegnimento dei device
-
-**Problema:** Durante la partita il giocatore può chiudere o aprire le porte e accendere o spegnere le luci.
-
-**Soluzione:** Per implementare la gestione delle luci e delle porte è stato adottato il design pattern _Template Method_ utilizzando come template la classe `Device`. Sia le luci che le porte sono trattate come dei semplici device, senza quindi portare particolari benefici al codice ma permettendo di renderlo manutenibile.
-
-```mermaid
-classDiagram
-class Light { }
-class Door { }
-class DeviceBase {
-    <<Abstract>>
-    boolean status
-    + switchOn() void
-    + switchOff() void
-    + isSwitchedOn() boolean
-}
-
-DeviceBase <|-- Door
-DeviceBase <|-- Light
-```
-
 #### Progressione della notte
 
 **Problema:** Durante la partita l'orario deve avanzare e con esso le Ai devono aggiornare il proprio livello di aggressività nel caso in cui sia previsto.
@@ -426,7 +404,44 @@ classDiagram
 
 #### 2.2.4 Davide Sancisi
 
+#### Accensione e spegnimento dei device
 
+**Problema:** Durante la partita il giocatore può chiudere o aprire le porte e accendere o spegnere le luci.
+
+**Soluzione:** Per implementare la gestione delle luci e delle porte è stato adottato il design pattern _Template Method_ utilizzando come template la classe `Device`. Sia le luci che le porte sono trattate come dei semplici device, senza quindi portare particolari benefici al codice ma permettendo di renderlo manutenibile.
+
+```mermaid
+classDiagram
+class Light { }
+class Door { }
+class DeviceBase {
+    <<Abstract>>
+    boolean status
+    + switchOn() void
+    + switchOff() void
+    + isSwitchedOn() boolean
+}
+
+DeviceBase <|-- Door
+DeviceBase <|-- Light
+```
+
+#### Implementazione dell'energia
+
+**Problema:** La creazione dell'oggetto che gestisce l'energia non deve creare dipendenze nella partita. Mettendo caso che in futuro se ne dovesse cambiare l'implementazione, questo deve poter essere fatto in maniera trasparente alla classe chiamante.
+
+**Soluzione:** Ho applicato il pattern _Static Factory_ implementando un metodo statico nell'interfaccia Power che istanzi la classe PowerImpl.
+
+```mermaid
+classDiagram
+    class Game { }
+    class Power {
+        + $create() Power
+    }
+    class PowerImpl { }
+    Game o-- Power
+    Power <|-- PowerImpl
+```
 
 ## Capitolo 3 - Sviluppo
 
