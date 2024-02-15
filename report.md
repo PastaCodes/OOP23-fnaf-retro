@@ -270,6 +270,11 @@ https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L104
 
+- Utilizzo della libreria `javax.sound.sampled.*`, in particolare della classe Clip, per l'inserimento degli effetti sonori nel codice.
+
+Piccolo frammento di codice che mi ha aiutato a capire come aumentare il volume della clip:
+https://www.tabnine.com/code/java/methods/javax.sound.sampled.Clip/getControl?snippet=5922beef4002b00004e0e8ce
+
 #### Davide Sancisi
 
 
