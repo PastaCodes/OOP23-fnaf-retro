@@ -232,7 +232,61 @@ Questo diagramma non è completo: serve ad illustrare come interagiscono le vari
 
 ### 3.1 Testing automatizzato
 
-Per verificare le corrette implementazioni delle
+Per verificare le corrette implementazioni delle funzionalità di gioco abbiamo utilizzato la piattaforma JUnit 5. Sono stati sviluppati diversi test mirati principalmente al model e al controller, con l'obiettivo di valutare le funzionalità e le prestazioni di tali componenti.
+
+Nello specifico, si sono realizzati i seguenti test:
+- `TestAi`: verifica la progressione del livello di aggressività dei nemici e il loro spostamento.
+- `TestDoor`: verifica il funzionamento della porta.
+- `TestLights`: verifica il funzionamento e la sincronizzazione delle luci.
+- `TestEventQueue`: verifica l'inserimento e l'estrazione degli eventi dalla coda.
+- `TestGameMap`: .
+- `TestNight`: verifica la progressione della notte.
+- `TestPower`: verifica la gestione dell'energia.
+
+### 3.2 Note di sviluppo
+
+#### Marco Buda
+
+#### Filippo Del Bianco
+
+#### Luca Ponseggi
+
+- Utilizzo di Lambda Expression. Seguono alcuni esempi:
+
+-- Link --
+
+-- Link --
+
+- E così via
+
+#### Davide Sancisi
+
+
+## Capitolo 4 - Commenti finali
+
+### 4.1 Autovalutazione e lavori futuri
+
+#### Marco Buda
+
+#### Filippo Del Bianco
+
+#### Luca Ponseggi
+
+#### Davide Sancisi
+
+
+## Appendice A - Guida utente
+
+### Introduzione
+
+La seguente è un'introduzione di massima per familiarizzarsi con il gioco; maggiori informazioni sulle strategie di attacco dei nemici e sulla gestione dell'energia possono essere trovate nella documentazione del codice.
+
+L'obiettivo del gioco è sopravvirere l'intera notte (6 ore) difendendosi dagli attacchi dei nemici.
+
+I nemici presenti nel gioco prendono il nome di animatroni e sono quattro:
+- Freddy, si presenta come un orsetto marrone con un cappello a cilindro sulla testa; a differenza di altri si muove secondo un percorso prestabilito e 
+
+come si presenta, come si countera, in che stanze si muove
 
 TODO:
 - telecameta tutta a destra che non funziona

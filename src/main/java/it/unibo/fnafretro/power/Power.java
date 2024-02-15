@@ -1,6 +1,7 @@
 package it.unibo.fnafretro.power;
 
 import it.unibo.fnafretro.game.Game;
+import it.unibo.fnafretro.game.EventThread;
 
 /** 
  * Power: rappresenta il livello di energia del gioco. 
