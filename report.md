@@ -274,8 +274,8 @@ https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a
 
 Link a risorse esterne utilizzate:
 
-Piccolo frammento di codice che spiega come aumentare il volume della clip:
-https://www.tabnine.com/code/java/methods/javax.sound.sampled.Clip/getControl?snippet=5922beef4002b00004e0e8ce
+- Piccolo frammento di codice che spiega come aumentare il volume della clip: https://www.tabnine.com/code/java/methods/javax.sound.sampled.Clip/getControl?snippet=5922beef4002b00004e0e8ce
+- File audio royalty free utilizzati: https://opengameart.org/, https://cdn.pixabay.com/
 
 #### Davide Sancisi
 
