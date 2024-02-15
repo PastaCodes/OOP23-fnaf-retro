@@ -308,6 +308,82 @@ classDiagram
 
 #### 2.2.3 Luca Ponseggi
 
+#### Accensione e spegnimento dei device
+
+**Problema:** Durante la partita il giocatore può chiudere o aprire le porte e accendere o spegnere le luci.
+
+**Soluzione:** Per implementare la gestione delle luci e delle porte è stato adottato il design pattern _Template Method_ utilizzando come template la classe `Device`. Sia le luci che le porte sono trattate come dei semplici device, senza quindi portare particolari benefici al codice ma permettendo di renderlo manutenibile.
+
+```mermaid
+classDiagram
+class Light { }
+class Door { }
+class DeviceBase {
+    <<Abstract>>
+    boolean status
+    + switchOn() void
+    + switchOff() void
+    + isSwitchedOn() boolean
+}
+
+DeviceBase <|-- Door
+DeviceBase <|-- Light
+```
+
+#### Progressione della notte
+
+**Problema:** Durante la partita l'orario deve avanzare e con esso le Ai devono aggiornare il proprio livello di aggressività nel caso in cui sia previsto.
+
+**Soluzione:** La classe `NightImpl` può essere interpretata come un'implementazione del pattern _Observer_.
+
+Subject: La classe `NightImpl` sarebbe il nostro Subject. È responsabile di tenere traccia della progressione delle ore durante la notte nel gioco.
+
+Observer: All'interno del metodo advance(), la classe notifica gli observer della sua modifica di stato, cioè l'avanzamento dell'ora. Gli osservatori, in questo caso, sono le Ai nel gioco.
+
+update(): Quando un'ora passa, la classe `NightImpl` notifica le Ai attraverso un ciclo for, chiamando il metodo increaseLevel() per aumentare il livello delle Ai che soddisfano determinate condizioni.
+
+notifyObserver(): Appena viene chiamato il metodo advance(), se la partita non è conclusa per vittoria, avviene il ciclo in cui vengono notificati tutti gli observer, nonchè le Ai del gioco.
+
+```mermaid
+classDiagram
+    class AiBase {
+        <<Abstract>>
+        + increaseLevel() void
+    }
+    class Ai {
+        <<Interface>>
+        + increaseLevel() void
+    }
+    class Night {
+        <<Interface>>
+        + advance() void
+        + getHour() int
+    }
+
+    Night o-- Ai
+    AiBase ..|> Ai
+    
+    note for Night "...\nfor(final Ai ai : game.ais()) {\nif ( ai.descriptor().levelUpHours().contains(this.hour) && ai.getLevel() > 0 ) {\nai.increaseLevel();\n}\n}\n..."
+```
+
+#### Audio Engine
+
+**Problema:** Durante la partita quando durante certe circostanze il gioco necessita di riprodurre degli effetti sonori, implementati dalla classe `Clip`, ma questa classe necessita di essere creata e inizializzata con delle impostazioni iniziali.
+
+**Soluzione:** È stato deciso di gestire la creazione di di questa clip con la _Static Factory_.
+
+```mermaid
+classDiagram
+    class FnafrButton { }
+    class AudioEngine {
+        + $loadSound(String name) Clip
+    }
+    class Clip { }
+    FnafrButton o-- AudioEngine
+    FnafrButton o-- Clip
+    AudioEngine ..> Clip
+```
+
 #### 2.2.4 Davide Sancisi
 
 
