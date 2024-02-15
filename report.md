@@ -325,6 +325,10 @@ personalmente ho preso parte allo sviluppo della parte di view e di model e in m
 
 #### Luca Ponseggi
 
+Questo progetto è stato formativo e mi ha aiutato ad acquisire molte competenze: sia in ambito del lavoro di gruppo che in ambito dello sviluppo del codice.
+Avendo lavorato a tutte e tre le parti del pattern mi ritengo più soddisfatto della parte View rispetto alle altre.
+In definitiva, questo progetto è stata un'esperienza utile. Mi ha insegnato l'importanza della collaborazione e del rispetto dei tempi stabiliti. Guardo con entusiasmo alle future opportunità di crescita e sviluppo, consapevole che questa esperienza mi ha fornito una solida base di inizio.
+
 #### Davide Sancisi
 
 La realizzazione di questo progetto è stata, personalmente, una sfida non da poco sia da un punto di vista tecnico che morale. Essendo uno studente-lavoratore ma soprattutto uno che non ha mai brillato nell'ambito della programmazione in generale, pur venendo da una scuola tecnica. Difatti mi sono ritrovato ad affrontare molti problemi concettuali e pratici che magari altri non avrebbero avuto e che mi hanno portato via più tempo e risorse. Ciononostante la sensazione di essere riuscito con il mio gruppo oggi a consegnare questo progetto rispettando gli obbiettivi preposti e la dead-line è molto gratificante e ripaga le molteplici situazioni meno gradevoli che ho passato lungo il percorso di progettazione. Un mio più sincero ringraziamento va a Marco Buda che si è preso la responsabilità di leader del gruppo, e non solo ha svolto in maniera egregia il suo compito, ma è stato fondamentale per me avendomi in più occasioni fornito delle delucidazioni fondamentali su alcuni aspetti tecnici e di pulizia del codice. Dulcis in fundo, ci tengo a precisare che le risorse messe a nostra disposizione dal docente del corso di programmazione ad oggetti si sono rivelate davvero utili, avendomi aiutato in più casi a riempire alcune lacune di conoscenza che da anni mi portavo dietro.
