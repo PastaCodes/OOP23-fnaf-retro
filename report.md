@@ -163,12 +163,12 @@ L'architettura di Five Nights at Freddy's Retro segue il pattern MVC, prestando 
 
 ```mermaid
 classDiagram
-    namespace Model {
+    %% namespace Model {
         class Ai { }
         class Map { }
         class Power { }
-    }
-    namespace Controller {
+    %% }
+    %% namespace Controller {
         class EventThread { }
         class Game {
             <<interface>>
@@ -176,13 +176,13 @@ classDiagram
             + update() void
             + end(Ending ending) void 
         }
-    }
-    namespace View {
+    %% }
+    %% namespace View {
         class FnafWindow {
             - update() void
         }
         class FnafComponent { }
-    }
+    %% }
     EventThread --* Game
     FnafWindow *-- FnafComponent
     Game --o FnafWindow
