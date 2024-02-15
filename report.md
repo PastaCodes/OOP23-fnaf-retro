@@ -47,7 +47,7 @@ Il gruppo si pone l'obiettivo di realizzare un videogioco survival horror punta 
 
 - Deve monitorare il consumo dell'energia tenendo conto del numero di dispositivi attivi, quali luci, porte e telecamere
 
-- Deve far avanzare la notte fino alle ore 6:00, che comportano la vittoria della partita
+- Deve far avanzare la notte fino alle ore 6:00, raggiunte le quali la partita si conclude con la vittoria del giocatore
 
 #### Requisiti non funzionali
 
@@ -65,11 +65,11 @@ Le entità coinvolte in una partita sono varie.
 
 Si ha a disposizione una quantità limitata di energia. Questa viene consumata nel corso della notte, tanto più velocemente quanti più sono i dispositivi attivi, senza possibilità di essere recuperata.
 
-La stanza in cui si trova il giocatore ha due ingressi laterali, ognuno dei quali è provvisto di una luce ed una porta di sicurezza attivabili e disattivabili dall'utente.
+La stanza in cui si trova il giocatore ha due ingressi laterali, ognuno dei quali è provvisto di una luce e di una porta di sicurezza attivabili e disattivabili dall'utente.
 
 Il giocatore è munito di un tablet che gli permette di accedere alle telecamere di sicurezza della struttura, le quali però vengono temporaneamente disattivate quando un nemico decide di spostarsi.
 
-Nell'edificio si aggirano quattro entità nemiche che per semplicità chiameremo "AI". Ognuna di esse ha un livello di aggressività che aumenta durante la notte ed un comportamento caratteristico.
+Nell'edificio si aggirano quattro entità nemiche che per semplicità chiameremo "AI". Ognuna di esse ha un comportamento caratteristico ed un livello di aggressività che aumenta durante la notte.
 
 Schema UML dell’analisi del problema, con rappresentate le entità principali ed i rapporti fra loro:
 ```mermaid
@@ -232,7 +232,7 @@ Questo diagramma non è completo: serve ad illustrare come interagiscono le vari
 
 ### 3.1 Testing automatizzato
 
-Per verificare le corrette implementazioni delle funzionalità di gioco abbiamo utilizzato la piattaforma JUnit 5. Sono stati sviluppati diversi test mirati principalmente al model e al controller, con l'obiettivo di valutare le funzionalità e le prestazioni di tali componenti.
+Per verificare la corretta implementazione delle funzionalità di gioco abbiamo utilizzato la piattaforma JUnit 5. Sono stati sviluppati diversi test mirati principalmente al model e al controller, con l'obiettivo di valutare le funzionalità e le prestazioni di tali componenti.
 
 Nello specifico, si sono realizzati i seguenti test:
 - `TestAi`: verifica la progressione del livello di aggressività dei nemici e il loro spostamento.
@@ -277,35 +277,32 @@ Nello specifico, si sono realizzati i seguenti test:
 
 ## Appendice A - Guida utente
 
-### Introduzione
+La seguente è un'introduzione di massima per familiarizzarsi con il gioco; maggiori dettagli implementativi riguardo le strategie di attacco dei nemici e la gestione dell'energia sono descritti nella documentazione del codice.
 
-La seguente è un'introduzione di massima per familiarizzarsi con il gioco; maggiori informazioni sulle strategie di attacco dei nemici e sulla gestione dell'energia possono essere trovate nella documentazione del codice.
+All'esecuzione dell'applicativo si è accolti da un menù che permette di personalizzare la difficoltà della partita, andando a modificare i livelli di aggressività dei singoli nemici. Questi vanno da `0` a `20`, dove il livello `0` rappresenta un nemico effettivamente disabilitato.
 
-L'obiettivo del gioco è sopravvirere l'intera notte (6 ore) difendendosi dagli attacchi dei nemici.
+In qualsiasi momento è possibile premere il tasto `ESC` per terminare un'eventuale partita in corso e tornare al menù.
+
+Avviata una partita, l'utente si trova nella vista in prima persona dell'ufficio. Qui è in grado di "ruotare" la visuale muovendo orizzontalmente il mouse, il che gli permette di interagire con i pulsanti delle porte (in rosso) ed i pulsanti delle luci (in bianco) ai lati della stanza.
+
+Nella parte bassa della finestra si trova un tasto che consente di accedere alla schermata delle telecamere. Da qui l'utente può selezionare una telecamera cliccando le icone sulla mappa.
+
+L'obiettivo del gioco è sopravvirere l'intera notte (6 ore nel gioco, che corrispondono a 2 minuti reali) difendendosi dagli attacchi dei nemici.
 
 I nemici presenti nel gioco prendono il nome di animatroni e sono quattro:
 
-- Freddy, si presenta come un orsetto marrone con un cappello a cilindro; a differenza di altri si muove secondo un percorso prestabilito e reagisce all'uso delle telecamere. È possibile fermarlo chiudendo la porta destra.
+- Freddy. Si presenta come un orsetto marrone con un cappello a cilindro; a differenza di altri si muove secondo un percorso prestabilito e reagisce all'uso delle telecamere. È possibile fermarlo temporaneamente chiudendo la porta destra.
 
-- Bonnie,
+- Bonnie. Si presenta come un coniglio blu in grado di teletrasportarsi fra le stanze del lato sinistro della struttura. Prima di attaccare il giocatore, passa un po' di tempo affacciato alla porta sinistra, perciò è possibile individuarlo con la luce e scacciarlo chiudendo la porta.
 
-- Chica,
+- Chica. Si presenta come una gallina gialla che preferisce muoversi nel lato destro della struttura, inclusa la cucina dove le telecamere sono disattivate. Può muoversi solo fra stanze adiacenti e, in modo simile a Bonnie, si affaccia alla porta destra prima di attaccare.
 
-- Foxy,
+- Foxy. Si presenta come una volpe pirata e passa tutto il suo tempo nella "baia del pirata", a differenza degli altri animatroni che a inizio partita si trovano sul palco principale. Periodicamente, se il giocatore usa troppo poco le telecamere, avanza di stadio e si sporge sempre di più da dietro il sipario dove si nasconde. Raggiunto lo stadio finale aggredisce immediatamente il giocatore, che può solo sperare di avere la porta sinistra chiusa prima che ciò avvenga.
 
-### Comandi di gioco
-
-Visuale spostabile, interazione con bottoni delle luci e delle porte e con il tasto delle telecamere e anche dentro la schermata delle telecamere.
-
-#### Altri comandi
+Gestire tutti i nemici contemporaneamente è sicuramente possibile, ma non è particolarmente semplice. Per chi volesse solo verificare il funzionamento del gioco consigliamo di attivarli singolarmente. Una configurazione prevedibile consiste nel tenere tutti i nemici al livello `0` e impostare Chica al livello `10`.
 
 
-/? come si presenta, come si countera, in che stanze si muove ?/
 
 TODO:
-- telecameta tutta a destra che non funziona
 - Costanti di energia (roba che dovrebbe mettere dave nella sua parte)
 - mappa di gioco e altre cose le descrive filo nella sua parte
-- spiegare i comportamenti delle AI
-- quando si muovono si spengono le telecamere
-
