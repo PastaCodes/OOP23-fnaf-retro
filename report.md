@@ -1,13 +1,13 @@
 # Five Nights at Freddy's Retro
 
-Relazione per il progetto del corso di Programmazione ad Oggetti
+Relazione per il progetto del corso di Programmazione ad Oggetti.
 
 - Marco Buda
 - Filippo Del Bianco
 - Luca Ponseggi
 - Davide Sancisi
 
-15-02-2024
+15/02/2024
 
 ## Indice
 
@@ -238,6 +238,8 @@ classDiagram
 
 #### 2.2.2 Marco Buda
 
+#### Creazione delle AI nelle partite
+
 **Problema:** Le AI esistono sia come istanze presenti all'interno di una partita (aventi uno stato, ossia un livello e una posizione) che come "personaggi" slegati da una specifica partita. In effetti possiedono delle caratteristiche immutabili e devono poter essere presentati in un menù di personalizzazione della partita.
 
 **Soluzione:** Viene fatta una distinzione fra un'entità che descrive il "personaggio", denominata `AiDescriptor`, e una che rappresenta un'istanza del personaggio all'interno di una partita, denominata semplicemente `Ai`. Oltre ad offrire certe informazioni immutabili, l'`AiDescriptor` realizza il pattern _Factory Method_, dove il factory method vero e proprio è il metodo `create`, il quale permette di istanziare una `Ai` all'interno di una partita specificata.
@@ -275,6 +277,8 @@ classDiagram
     Ai <.. AiDescriptor
 ```
 
+#### Astrazione del thread degli eventi
+
 **Problema:** La logica di gioco deve essere indipendente dall'implementazione del thread degli eventi, di modo che quest'ultima possa essere sostituita in caso di necessità. Analogamente l'esecuzione degli eventi deve essere indipendente dal modo in cui essi vengono memorizzati.
 
 **Soluzione:** Viene adottato il pattern _Strategy_ in entrambi i casi, astraendo il thread di gioco con l'interfaccia `EventThread` e astraendo una struttura dati che contenga gli eventi chiamata `EventQueue`.
@@ -301,6 +305,8 @@ classDiagram
     Game *--> EventThread
     EventThread *--> EventQueue
 ```
+
+#### Riuso del codice delle componenti grafiche
 
 **Problema:** Le componenti grafiche personalizzate che utilizziamo (bottoni, immagini, caselle di testo) condividono la caratteristica di reagire al ridimensionamento della finestra di gioco. Inoltre le componenti contenenti immagini condividono molta logica per il ritaglio delle immagini stesse.
 
@@ -421,6 +427,7 @@ classDiagram
 #### 2.2.4 Davide Sancisi
 
 
+
 ## Capitolo 3 - Sviluppo
 
 ### 3.1 Testing automatizzato
@@ -460,7 +467,7 @@ https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e3041
 
 #### Filippo Del Bianco
 
-utilizzo di lambda
+Utilizzo di lambda:
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/gui/FnafrWindow.java#L234
 
@@ -472,17 +479,17 @@ https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e3041
 
 #### Luca Ponseggi
 
-- Utilizzo di Lambda Expression:
+Utilizzo di Lambda Expression:
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrCard.java#L78-L80
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L106-L109
 
-- Utilizzo di method reference:
+Utilizzo di method reference:
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/86abd7aa6b3f602cae800e09a353192c2cd1d309/src/main/java/it/unibo/fnafretro/night/NightImpl.java#L27-L29
 
-- Utilizzo di Consumer, Function e Runnable:
+Utilizzo di Consumer, Function e Runnable:
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrCard.java#L97
 
@@ -492,33 +499,32 @@ https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L104
 
-- Utilizzo della libreria `javax.sound.sampled.*`, in particolare della classe Clip, per l'inserimento degli effetti sonori nel codice.
+Utilizzo della libreria `javax.sound.sampled.*`, in particolare della classe Clip, per l'inserimento degli effetti sonori nel codice.
 
 Link a risorse esterne utilizzate:
 
 - Piccolo frammento di codice che spiega come aumentare il volume della clip: https://www.tabnine.com/code/java/methods/javax.sound.sampled.Clip/getControl?snippet=5922beef4002b00004e0e8ce
-- File audio royalty free utilizzati: https://opengameart.org/, https://cdn.pixabay.com/
+- File audio royalty-free utilizzati: https://opengameart.org/, https://cdn.pixabay.com/
 
 #### Davide Sancisi
 
-- Utilizzo di Function:
+Utilizzo di Function:
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/gui/FnafrImage.java#L88-L92
 
-- Utilizzo di Consumer:
+Utilizzo di Consumer:
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/gui/FnafrImage.java#L95-L97
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/gui/FnafrLabel.java#L98-L100
 
-- Utilizzo di method reference, stream e lambda:
+Utilizzo di method reference, stream e lambda:
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/power/PowerImpl.java#L33-L36
 
-- Utilizzo di method reference:
+Utilizzo di method reference:
 
 https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/power/PowerImpl.java#L21
-
 
 ## Capitolo 4 - Commenti finali
 
@@ -530,10 +536,7 @@ Riguardando il lavoro svolto mi ritrovo ad essere molto soddisfatto della mia po
 
 #### Filippo Del Bianco
 
-sono contento di aver preso parte a questo progetto di gruppo, principalmente perchè mi ha fatto comprendere
-come lavorare in gruppo avendo davanti una scadenza e dovendomi adattare anche agli altri per lo sviluppo delle mie parti;
-cosa che normalmente non faresti mai in un progetto singolo.
-personalmente ho preso parte allo sviluppo della parte di view e di model e in minima parte anche alla parte di controller.
+Sono contento di aver preso parte a questo progetto di gruppo, principalmente perchè mi ha fatto comprendere come lavorare in gruppo avendo davanti una scadenza e dovendomi adattare anche agli altri per lo sviluppo delle mie parti; cosa che normalmente non faresti mai in un progetto singolo. Personalmente ho preso parte allo sviluppo della parte di view e di model e in minima parte anche alla parte di controller.
 
 #### Luca Ponseggi
 
@@ -570,9 +573,3 @@ I nemici presenti nel gioco prendono il nome di animatroni e sono quattro:
 - Foxy. Si presenta come una volpe pirata e passa tutto il suo tempo nella "baia del pirata", a differenza degli altri animatroni che a inizio partita si trovano sul palco principale. Periodicamente, se il giocatore usa troppo poco le telecamere, avanza di stadio e si sporge sempre di più da dietro il sipario dove si nasconde. Raggiunto lo stadio finale aggredisce immediatamente il giocatore, che può solo sperare di avere la porta sinistra chiusa prima che ciò avvenga.
 
 Gestire tutti i nemici contemporaneamente è sicuramente possibile, ma non è particolarmente semplice. Per chi volesse solo verificare il funzionamento del gioco consigliamo di attivarli singolarmente. Una configurazione prevedibile consiste nel tenere tutti i nemici al livello `0` e impostare Chica al livello `10`.
-
-
-
-TODO:
-- Costanti di energia (roba che dovrebbe mettere dave nella sua parte)
-- mappa di gioco e altre cose le descrive filo nella sua parte
