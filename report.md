@@ -248,6 +248,16 @@ https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e3041
 
 #### Filippo Del Bianco
 
+utilizzo di lambda
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/gui/FnafrWindow.java#L234
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/gui/FnafrWindow.java#L577-L580
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/gui/FnafrWindow.java#L587-L590
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/gui/FnafrWindow.java#L605-L610
+
 #### Luca Ponseggi
 
 - Utilizzo di Lambda Expression:
@@ -304,7 +314,14 @@ https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999
 
 #### Marco Buda
 
+Riguardando il lavoro svolto mi ritrovo ad essere molto soddisfatto della mia porzione di model e, seppure necessiti di qualche ritocco per essere portata ad un livello professionale, anche di quella di controller. Per quanto riguarda la parte di grafica, invece, riconosco di essere stato più carente. Nonostante funzioni correttamente, non rispetta gli standard di qualità del codice che tendo ad auto-impormi. Questo è dovuto principalmente al fatto che ho sottovalutato il tempo che sarebbe stato necessario per implementarla e ne è derivato un codice poco flessibile e difficile da comprendere. All'interno del gruppo sento di aver avuto un ruolo importante, avendo spronato gli altri membri a perseguire una visione che avevo per il gioco. Nel complesso penso che questo progetto sia stato molto formativo, specialmente nell'ambito della coordinazione del lavoro, anche se ritengo di avere ancora molto da imparare sotto questo aspetto.
+
 #### Filippo Del Bianco
+
+sono contento di aver preso parte a questo progetto di gruppo, principalmente perchè mi ha fatto comprendere
+come lavorare in gruppo avendo davanti una scadenza e dovendomi adattare anche agli altri per lo sviluppo delle mie parti;
+cosa che normalmente non faresti mai in un progetto singolo.
+personalmente ho preso parte allo sviluppo della parte di view e di model e in minima parte anche alla parte di controller.
 
 #### Luca Ponseggi
 
