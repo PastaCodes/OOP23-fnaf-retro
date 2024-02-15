@@ -237,13 +237,25 @@ Nello specifico, si sono realizzati i seguenti test:
 
 #### Luca Ponseggi
 
-- Utilizzo di Lambda Expression. Seguono alcuni esempi:
+- Utilizzo di Lambda Expression:
 
--- Link --
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrCard.java#L78C1-L80C11
 
--- Link --
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L106C13-L109C16
 
-- E così via
+- Utilizzo di method reference:
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/night/NightImpl.java#L27C1-L29C11
+
+- Utilizzo di Consumer, Function e Runnable:
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrCard.java#L97C5-L97C61
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L151C5-L151C75
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L136C5-L136C91
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L104C5-L104C49
 
 #### Davide Sancisi
 
