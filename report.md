@@ -241,12 +241,18 @@ classDiagram
     Ai <.. AiDescriptor
 ```
 
-**Problema:** La logica di gioco deve essere indipendente dall'implementazione del thread degli eventi, di modo che quest'ultima possa essere sostituita in caso di necessità.
+**Problema:** La logica di gioco deve essere indipendente dall'implementazione del thread degli eventi, di modo che quest'ultima possa essere sostituita in caso di necessità. Analogamente l'esecuzione degli eventi deve essere indipendente dal modo in cui essi vengono memorizzati.
 
-**Soluzione:** Viene adottato il pattern _Strategy_, astraendo il thread di gioco con l'interfaccia `EventThread`, alla quale viene delegata l'esecuzione degli eventi.
+**Soluzione:** Viene adottato il pattern _Strategy_ in entrambi i casi, astraendo il thread di gioco con l'interfaccia `EventThread` e astraendo una struttura dati che contenga gli eventi chiamata `EventQueue`.
 
 ```mermaid
 classDiagram
+    class EventQueue {
+        <<interface>>
+        + insert(int tick, Runnable action) void
+        + nextTick() Optional~Integer~
+        + pullBefore(int tick) List<Runnable>
+    }
     class EventThread {
         <<interface>>
         + schedule(int delay, Runnable action) void
@@ -259,6 +265,45 @@ classDiagram
         + getEventThread() EventThread
     }
     Game *--> EventThread
+    EventThread *--> EventQueue
+```
+
+**Problema:** Le componenti grafiche personalizzate che utilizziamo (bottoni, immagini, caselle di testo) condividono la caratteristica di reagire al ridimensionamento della finestra di gioco. Inoltre le componenti contenenti immagini condividono molta logica per il ritaglio delle immagini stesse.
+
+**Soluzione:** Per non ripetere inutilmente parti di codice, vengono create le classi astratte `FnafrComponent` e `FnafrImageComponent`, che realizzano entrambe il pattern _Template Method_. `FnafrComponent` espone il template method `update`, che richiama il metodo astratto `setWindowPosition`, mentre `FnafrImageComponent` invoca il metodo astratto `processImages`.
+
+```mermaid
+classDiagram
+    class FnafrComponent {
+        <<abstract>>
+        # setWindowPosition(Point windowPosition) void*
+        + update(Point windowOffset, int scale) void
+    }
+    class FnafrImageComponent {
+        <<abstract>>
+        # processImages(... processor) void*
+        # setWindowPosition(Point windowPosition) void*
+        + update(Point windowOffset, int scale) void
+    }
+    class FnafrLabel {
+        # processImages(... processor) void
+        # setWindowPosition(Point windowPosition) void
+        + update(Point windowOffset, int scale) void
+    }
+    class FnafrImage {
+        # processImages(... processor) void
+        # setWindowPosition(Point windowPosition) void
+        + update(Point windowOffset, int scale) void
+    }
+    class FnafrButton {
+        # processImages(... processor) void
+        # setWindowPosition(Point windowPosition) void
+        + update(Point windowOffset, int scale) void
+    }
+    FnafrComponent <|-- FnafrLabel
+    FnafrComponent <|-- FnafrImageComponent
+    FnafrImageComponent <|-- FnafrImage
+    FnafrImageComponent <|-- FnafrButton
 ```
 
 #### 2.2.3 Luca Ponseggi
