@@ -284,14 +284,28 @@ La seguente è un'introduzione di massima per familiarizzarsi con il gioco; magg
 L'obiettivo del gioco è sopravvirere l'intera notte (6 ore) difendendosi dagli attacchi dei nemici.
 
 I nemici presenti nel gioco prendono il nome di animatroni e sono quattro:
-- Freddy, si presenta come un orsetto marrone con un cappello a cilindro sulla testa; a differenza di altri si muove secondo un percorso prestabilito e 
 
-come si presenta, come si countera, in che stanze si muove
+- Freddy, si presenta come un orsetto marrone con un cappello a cilindro; a differenza di altri si muove secondo un percorso prestabilito e reagisce all'uso delle telecamere. È possibile fermarlo chiudendo la porta destra.
+
+- Bonnie,
+
+- Chica,
+
+- Foxy,
+
+### Comandi di gioco
+
+Visuale spostabile, interazione con bottoni delle luci e delle porte e con il tasto delle telecamere e anche dentro la schermata delle telecamere.
+
+#### Altri comandi
+
+
+/? come si presenta, come si countera, in che stanze si muove ?/
 
 TODO:
 - telecameta tutta a destra che non funziona
 - Costanti di energia (roba che dovrebbe mettere dave nella sua parte)
 - mappa di gioco e altre cose le descrive filo nella sua parte
 - spiegare i comportamenti delle AI
-
+- quando si muovono si spengono le telecamere
 
