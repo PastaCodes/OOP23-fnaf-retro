@@ -32,6 +32,7 @@ import it.unibo.fnafretro.ai.Foxy;
 import it.unibo.fnafretro.ai.Freddy;
 import it.unibo.fnafretro.game.Game;
 import it.unibo.fnafretro.map.Room;
+import it.unibo.fnafretro.sound.AudioEngine;
 
 /*
  * Questa implementazione fa largo uso di magic number, ma questi non fanno
@@ -308,6 +309,7 @@ public final class FnafrWindow {
             final FnafrButton decrease = new FnafrButton(
                 new Rectangle(16 + 33 * i, 44, 9, 9),
                 decreaseImage, decreaseImage,
+                "modifier",
                 true
             );
             this.menuCard.add(decrease, 2);
@@ -320,6 +322,7 @@ public final class FnafrWindow {
             final FnafrButton increase = new FnafrButton(
                 new Rectangle(36 + 33 * i, 44, 9, 9),
                 increaseImage, increaseImage,
+                "modifier",
                 true
             );
             this.menuCard.add(increase, 2);
@@ -329,11 +332,19 @@ public final class FnafrWindow {
                 level.setText(String.valueOf(increased));
                 this.update();
             });
-            final FnafrImage face = new FnafrImage(new Rectangle(18 + 33 * i, 11, 25, 30), "menu/" +  ai.resourceName());
+            final FnafrImage face = new FnafrImage(
+                new Rectangle(18 + 33 * i, 11, 25, 30),
+                "menu/" +  ai.resourceName()
+            );
             this.menuCard.add(face, 2);
         }
         final BufferedImage startImage = FnafrComponent.loadImage("menu/start_button");
-        final FnafrButton startButton = new FnafrButton(new Rectangle(57, 65, 46, 13), startImage, startImage, true);
+        final FnafrButton startButton = new FnafrButton(
+            new Rectangle(57, 65, 46, 13),
+            startImage, startImage,
+            "modifier",
+            true
+        );
         this.menuCard.add(startButton, 1);
         final FnafrLabel startLabel = new FnafrLabel("Gioca", new Point2D.Float(80f, 71.5f));
         startLabel.setAlignment(FnafrLabel.Alignment.CENTER);
@@ -360,6 +371,7 @@ public final class FnafrWindow {
         final FnafrButton camerasButton = new FnafrButton(
             new Rectangle(56, 82, 48, 6),
             camerasButtonImage, camerasButtonImage,
+            "cameras",
             true
         );
         card.add(camerasButton, 7);
@@ -407,7 +419,12 @@ public final class FnafrWindow {
     }
 
     private void initMainCard() {
-        this.mainCard.add(new FnafrImage(new Rectangle(0, 0, 208, 90), "map/main"), 1, true);
+        this.mainCard.add(
+            new FnafrImage(
+                new Rectangle(0, 0, 208, 90), "map/main"),
+                1,
+                true
+            );
 
         this.fan = new FnafrImage(new Rectangle(99, 35, 17, 21), "fan");
         this.mainCard.add(this.fan, 2, true);
@@ -441,7 +458,7 @@ public final class FnafrWindow {
 
         final BufferedImage lightButtonOff = FnafrComponent.loadImage("lights_button_off");
         final BufferedImage lightButtonOn = FnafrComponent.loadImage("lights_button_on");
-        final FnafrButton lightButtonLeft = new FnafrButton(new Rectangle(3, 46, 6, 6), lightButtonOff, lightButtonOn);
+        final FnafrButton lightButtonLeft = new FnafrButton(new Rectangle(3, 46, 6, 6), lightButtonOff, lightButtonOn, "light");
         this.mainCard.add(lightButtonLeft, 5, true);
         lightButtonLeft.setAction(() -> {
             if (this.game.lights().isLeftLightOn()) {
@@ -454,7 +471,11 @@ public final class FnafrWindow {
                 });
             }
         });
-        final FnafrButton lightButtonRight = new FnafrButton(new Rectangle(199, 46, 6, 6), lightButtonOff, lightButtonOn);
+        final FnafrButton lightButtonRight = new FnafrButton(
+            new Rectangle(199, 46, 6, 6),
+            lightButtonOff, lightButtonOn,
+            "light"
+        );
         this.mainCard.add(lightButtonRight, 5, true);
         lightButtonRight.setAction(() -> {
             if (this.game.lights().isRightLightOn()) {
@@ -470,7 +491,11 @@ public final class FnafrWindow {
 
         final BufferedImage doorButtonOff = FnafrComponent.loadImage("door_button_off");
         final BufferedImage doorButtonOn = FnafrComponent.loadImage("door_button_on");
-        this.leftDoorButton = new FnafrButton(new Rectangle(3, 39, 6, 6), doorButtonOff, doorButtonOn, true);
+        this.leftDoorButton = new FnafrButton(
+            new Rectangle(3, 39, 6, 6),
+            doorButtonOff, doorButtonOn,
+            "door",
+            true);
         this.mainCard.add(this.leftDoorButton, 5, true);
         this.leftDoorButton.setAction(() -> {
             if (this.game.leftDoor().isSwitchedOn()) {
@@ -483,7 +508,11 @@ public final class FnafrWindow {
                 });
             }
         });
-        this.rightDoorButton = new FnafrButton(new Rectangle(199, 39, 6, 6), doorButtonOff, doorButtonOn, true);
+        this.rightDoorButton = new FnafrButton(
+            new Rectangle(199, 39, 6, 6),
+            doorButtonOff, doorButtonOn,
+            "door",
+            true);
         this.mainCard.add(this.rightDoorButton, 5, true);
         this.rightDoorButton.setAction(() -> {
             if (this.game.rightDoor().isSwitchedOn()) {
@@ -569,7 +598,8 @@ public final class FnafrWindow {
             final FnafrButton camera = new FnafrButton(
                 new Rectangle(entry.getValue(), cameraDimension),
                 cameraOff,
-                cameraOn
+                cameraOn,
+                "camera"
             );
             this.camerasCard.add(camera, 7);
             camera.setAction(() -> {
@@ -588,10 +618,12 @@ public final class FnafrWindow {
 
     private void end(final Game.Ending ending) {
         if (ending.equals(Game.VICTORY)) {
+            AudioEngine.playOnce(AudioEngine.loadSound("win"));
             this.six.setText("6 AM");
             this.endText.setText("Hai vinto!");
             this.jumpscare.setVisible(false);
         } else if (ending instanceof Game.JumpscareEnding jumpscareEnding) {
+            AudioEngine.playOnce(AudioEngine.loadSound("jumpscare"));
             this.six.setText("");
             this.endText.setText("Hai perso.");
             this.jumpscare.setImage(FnafrComponent.loadImage(
