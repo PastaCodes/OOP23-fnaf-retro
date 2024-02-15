@@ -234,23 +234,23 @@ Nello specifico, si sono realizzati i seguenti test:
 
 - Utilizzo di Lambda Expression:
 
-https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrCard.java#L78C1-L80C11
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrCard.java#L78-L80
 
-https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L106C13-L109C16
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L106-L109
 
 - Utilizzo di method reference:
 
-https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/night/NightImpl.java#L27C1-L29C11
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/86abd7aa6b3f602cae800e09a353192c2cd1d309/src/main/java/it/unibo/fnafretro/night/NightImpl.java#L27-L29
 
 - Utilizzo di Consumer, Function e Runnable:
 
-https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrCard.java#L97C5-L97C61
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrCard.java#L97
 
-https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L151C5-L151C75
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L151
 
-https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L136C5-L136C91
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L136
 
-https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L104C5-L104C49
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrButton.java#L104
 
 #### Davide Sancisi
 
