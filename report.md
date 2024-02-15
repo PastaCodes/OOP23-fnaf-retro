@@ -204,6 +204,63 @@ Questo diagramma non è completo, ma illustra come interagiscono le varie parti 
 
 #### 2.2.2 Marco Buda
 
+**Problema:** Le AI esistono sia come istanze presenti all'interno di una partita (aventi uno stato, ossia un livello e una posizione) che come "personaggi" slegati da una specifica partita. In effetti possiedono delle caratteristiche immutabili e devono poter essere presentati in un menù di personalizzazione della partita.
+
+**Soluzione:** Viene fatta una distinzione fra un'entità che descrive il "personaggio", denominata `AiDescriptor`, e una che rappresenta un'istanza del personaggio all'interno di una partita, denominata semplicemente `Ai`. Oltre ad offrire certe informazioni immutabili, l'`AiDescriptor` realizza il pattern _Factory Method_, dove il factory method vero e proprio è il metodo `create`, il quale permette di istanziare una `Ai` all'interno di una partita specificata.
+
+```mermaid
+classDiagram
+    class Ai {
+        <<interface>>
+        + increaseLevel() void
+        + getLevel() int
+        + getPosition() Room
+    }
+    class AiDescriptor {
+        <<interface>>
+        + create(Game game, int initialLevel) Ai
+        + getLevelUpHours() Set~Integer~
+        + getStartingRoomName() String
+    }
+    class Freddy {
+        + create(…) Ai
+    }
+    class Bonnie {
+        + create(…) Ai
+    }
+    class Chica {
+        + create(…) Ai
+    }
+    class Foxy {
+        + create(…) Ai
+    }
+    AiDescriptor <|.. Freddy
+    AiDescriptor <|.. Bonnie
+    AiDescriptor <|.. Chica
+    AiDescriptor <|.. Foxy
+    Ai <.. AiDescriptor
+```
+
+**Problema:** La logica di gioco deve essere indipendente dall'implementazione del thread degli eventi, di modo che quest'ultima possa essere sostituita in caso di necessità.
+
+**Soluzione:** Viene adottato il pattern _Strategy_, astraendo il thread di gioco con l'interfaccia `EventThread`, alla quale viene delegata l'esecuzione degli eventi.
+
+```mermaid
+classDiagram
+    class EventThread {
+        <<interface>>
+        + schedule(int delay, Runnable action) void
+        + scheduleRepeating(int period, Runnable action) void
+        + scheduleSignal(Runnable action) void
+        + start() void
+        + stop() void
+    }
+    class Game {
+        + getEventThread() EventThread
+    }
+    Game *--> EventThread
+```
+
 #### 2.2.3 Luca Ponseggi
 
 #### 2.2.4 Davide Sancisi
