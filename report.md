@@ -228,6 +228,24 @@ Nello specifico, si sono realizzati i seguenti test:
 
 #### Marco Buda
 
+Utilizzo di Stream, Lambda, Method Reference, Runnable, Consumer e Function, spesso combinati. Alcuni esempi:
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/ai/Ai.java#L50-L75
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/ai/Chica.java#L58-L68
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/game/EventThreadImpl.java#L34-L37
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/gui/FnafrImageComponent.java#L93-L112
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/4cc615741b442ad7b6e385d7524a0ac40e107a29/src/main/java/it/unibo/fnafretro/game/Game.java#L75-L77
+
+Utilizzo di Optional. Alcuni esempi:
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/game/EventQueueImpl.java#L24
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/b814da847d4a76b017b60e9e30415453c6ce215b/src/main/java/it/unibo/fnafretro/gui/FnafrComponent.java#L140
+
 #### Filippo Del Bianco
 
 #### Luca Ponseggi
