@@ -76,7 +76,7 @@ Schema UML dell’analisi del problema, con rappresentate le entità principali 
 classDiagram
     class Game {
         <<interface>>
-        + getRooms() Map
+        + getMap() Map
         + getCameras() Cameras
         + getAllAis() Set<Ai>
         + getPower() Power
@@ -109,10 +109,8 @@ classDiagram
         + switchOff() void
         + isSwitchedOn() boolean
     }
-    class Door {
-    }
-    class Light {
-    }
+    class Door { }
+    class Light { }
     class Cameras {
         <<interface>>
         + areActive() boolean
@@ -138,10 +136,8 @@ classDiagram
         + getRoomName() String
         + getSide() String
     }
-
     Game *-- Ai
     Game *-- Map
-    %% non esiste un power che non sia in un game
     Game *-- Power
     Game *-- Door
     Game *-- Light
@@ -149,17 +145,9 @@ classDiagram
     Cameras --* Game
     Light ..|> Device
     Door ..|> Device
-
-    %% non esiste una stanza che non sia in una mappa
     Map *-- Room
-
-    %% esistono stanze in cui non sono presenti Ai
     Room --o Ai
-
-    %% Device ha delle dipendenze per alcune funzioni di power
     Power <-- Device
-
-    %% Lo stesso per Cameras
     Power <-- Cameras
 ```
 
@@ -196,7 +184,6 @@ classDiagram
             + end(Ending ending) void 
         }
     }
-
     namespace View {
         class FnafWindow {
             - update() void
@@ -205,17 +192,14 @@ classDiagram
             ...
         }
     }
-
     EventThread --* Game
-
     FnafWindow *-- FnafComponent
-
     Game --o FnafWindow
     Game *-- Ai
     Game *-- Map
     Game *-- Power
 ```
-Questo diagramma non è completo: serve ad illustrare come interagiscono le varie parti del pattern MVC.
+Questo diagramma non è completo, ma illustra come interagiscono le varie parti del pattern MVC.
 
 ### 2.2 Design dettagliato
 
@@ -239,7 +223,7 @@ Nello specifico, si sono realizzati i seguenti test:
 - `TestDoor`: verifica il funzionamento della porta.
 - `TestLights`: verifica il funzionamento e la sincronizzazione delle luci.
 - `TestEventQueue`: verifica l'inserimento e l'estrazione degli eventi dalla coda.
-- `TestGameMap`: .
+- `TestGameMap`: verifica l'inizializzazione delle stanze e dei collegamenti fra di esse.
 - `TestNight`: verifica la progressione della notte.
 - `TestPower`: verifica la gestione dell'energia.
 
@@ -279,7 +263,7 @@ Nello specifico, si sono realizzati i seguenti test:
 
 La seguente è un'introduzione di massima per familiarizzarsi con il gioco; maggiori dettagli implementativi riguardo le strategie di attacco dei nemici e la gestione dell'energia sono descritti nella documentazione del codice.
 
-All'esecuzione dell'applicativo si è accolti da un menù che permette di personalizzare la difficoltà della partita, andando a modificare i livelli di aggressività dei singoli nemici. Questi vanno da `0` a `20`, dove il livello `0` rappresenta un nemico effettivamente disabilitato.
+Eseguendo l'applicativo si è accolti da un menù che permette di personalizzare la difficoltà della partita, andando a modificare i livelli di aggressività dei singoli nemici. Questi vanno da `0` a `20`, dove il livello `0` rappresenta un nemico effettivamente disabilitato.
 
 In qualsiasi momento è possibile premere il tasto `ESC` per terminare un'eventuale partita in corso e tornare al menù.
 
