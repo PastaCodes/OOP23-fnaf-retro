@@ -202,6 +202,40 @@ Questo diagramma non è completo, ma illustra come interagiscono le varie parti 
 
 #### 2.2.1 Filippo Del Bianco
 
+#### Creazione della mappa di gioco
+
+**Problema:** La mappa di gioco è un istanza che deve poter esistere all'interno della partita e che allo stesso tempo ne è slegata. Essa contiene dei dati che vengono inizializzati al momento della creazione della classe e non possono essere modificati durante l'esecuzione del programma.
+
+**Soluzione:** Ho deciso di implementare una funzione statica nell'interfaccia GameMap seguendo il pattern _Static Factory_ per istanziare la classe GameMapImpl.
+
+```mermaid
+classDiagram
+    class Game { }
+    class GameMap {
+        + $create() GameMap
+    }
+    class GameMapImpl { }
+    Game o-- GameMap
+    GameMap <|-- GameMapImpl
+```
+
+#### Creazione delle telecamere
+
+**Problema:** Le telecamere sono un'istanza che deve poter esistere all'interno della partita e che allo stesso tempo ne è slegata. Essa contiene dei dati che vengono inizializzati al momento della creazione della classe e che vengono modificati durante il corso della partita tarmite delle funzioni di tipo setter.
+
+**Soluzione:** Ho deciso di implementare una funzione statica nell'interfaccia Cameras seguendo il pattern _Static Factory_ per istanziare la classe CamerasImpl.
+
+```mermaid
+classDiagram
+    class Game { }
+    class Cameras {
+        + $create() Cameras
+    }
+    class CamerasImpl { }
+    Game o-- Cameras
+    Cameras <|-- CamerasImpl
+```
+
 #### 2.2.2 Marco Buda
 
 **Problema:** Le AI esistono sia come istanze presenti all'interno di una partita (aventi uno stato, ossia un livello e una posizione) che come "personaggi" slegati da una specifica partita. In effetti possiedono delle caratteristiche immutabili e devono poter essere presentati in un menù di personalizzazione della partita.
