@@ -279,6 +279,24 @@ Link a risorse esterne utilizzate:
 
 #### Davide Sancisi
 
+- Utilizzo di Function:
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/gui/FnafrImage.java#L88-L92
+
+- Utilizzo di Consumer:
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/gui/FnafrImage.java#L95-L97
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/gui/FnafrLabel.java#L98-L100
+
+- Utilizzo di method reference, stream e lambda:
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/power/PowerImpl.java#L33-L36
+
+- Utilizzo di method reference:
+
+https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999bda9ceb082ea/src/main/java/it/unibo/fnafretro/power/PowerImpl.java#L21
+
 
 ## Capitolo 4 - Commenti finali
 
