@@ -370,7 +370,7 @@ classDiagram
 
 **Problema:** Durante la partita quando durante certe circostanze il gioco necessita di riprodurre degli effetti sonori, implementati dalla classe `Clip`, ma questa classe necessita di essere creata e inizializzata con delle impostazioni iniziali.
 
-**Soluzione:** È stato deciso di gestire la creazione di di questa clip con la _Static Factory_.
+**Soluzione:** È stato deciso di gestire la creazione di di questa clip con la _Simple Factory_, una cosa da segnalare è che però la funzione è statica.
 
 ```mermaid
 classDiagram
