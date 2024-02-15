@@ -13,10 +13,13 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import javax.sound.sampled.Clip;
 import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
+
+import it.unibo.fnafretro.sound.AudioEngine;
 
 /**
  * Un bottone che utilizza due immagini a seconda dello stato attuale.
@@ -29,12 +32,14 @@ public final class FnafrButton extends FnafrImageComponent {
     private final BufferedImage imageOff;
     private final BufferedImage imageOn;
     private final boolean toggleable;
+    private final Clip sound;
 
     /**
      * Costruisce un bottone con tutte le informazioni specificate.
      * @param gameBounds    i limiti in cui posizionare il bottone
      * @param imageOff      l'immagine da disegnare quando il bottone è spento
      * @param imageOn       l'immagine da disegnare quando il bottone è acceso
+     * @param sound         il suono che emette il bottone
      * @param toggleable    se impostato a {@code true} comporta che premere il
      *                      bottone faccia alternare il suo stato
      */
@@ -42,6 +47,7 @@ public final class FnafrButton extends FnafrImageComponent {
         final Rectangle gameBounds,
         final BufferedImage imageOff,
         final BufferedImage imageOn,
+        final String sound,
         final boolean toggleable
     ) {
         super(gameBounds);
@@ -51,6 +57,7 @@ public final class FnafrButton extends FnafrImageComponent {
         this.button = toggleable ? new JToggleButton() : new JButton();
         this.button.setBorderPainted(false);
         this.button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        this.sound = AudioEngine.loadSound(sound);
     }
 
     /**
@@ -58,13 +65,15 @@ public final class FnafrButton extends FnafrImageComponent {
      * @param gameBounds    i limiti in cui posizionare il bottone
      * @param imageOff      l'immagine da disegnare quando il bottone è spento
      * @param imageOn       l'immagine da disegnare quando il bottone è acceso
+     * @param sound         il suono che emette il bottone
      */
     public FnafrButton(
         final Rectangle gameBounds,
         final BufferedImage imageOff,
-        final BufferedImage imageOn
+        final BufferedImage imageOn,
+        final String sound
     ) {
-        this(gameBounds, imageOff, imageOn, false);
+        this(gameBounds, imageOff, imageOn, sound, false);
     }
 
     /**
@@ -72,16 +81,19 @@ public final class FnafrButton extends FnafrImageComponent {
      * @param gameBounds    i limiti in cui posizionare il bottone
      * @param imageOffName  l'immagine da disegnare quando il bottone è spento
      * @param imageOnName   l'immagine da disegnare quando il bottone è acceso
+     * @param sound         il suono che emette il bottone
      */
     public FnafrButton(
         final Rectangle gameBounds,
         final String imageOffName,
-        final String imageOnName
+        final String imageOnName,
+        final String sound
     ) {
         this(
             gameBounds,
             FnafrComponent.loadImage(imageOffName),
-            FnafrComponent.loadImage(imageOnName)
+            FnafrComponent.loadImage(imageOnName),
+            sound
         );
     }
 
@@ -91,13 +103,17 @@ public final class FnafrButton extends FnafrImageComponent {
      */
     public void setAction(final Runnable action) {
         if (this.toggleable) {
-            this.button.addActionListener(e -> action.run());
+            this.button.addActionListener(e -> {
+                action.run();
+                AudioEngine.playOnce(this.sound);
+            });
         } else {
             this.button.addMouseListener(new MouseAdapter() {
 
                 @Override
                 public void mousePressed(final MouseEvent e) {
                     action.run();
+                    AudioEngine.playOnce(FnafrButton.this.sound);
                 }
 
                 @Override
