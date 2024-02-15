@@ -304,6 +304,8 @@ https://github.com/PastaCodes/OOP23-fnaf-retro/blob/3dfca308af36dd8e746a2477e999
 
 #### Marco Buda
 
+Riguardando il lavoro svolto mi ritrovo ad essere molto soddisfatto della mia porzione di model e, seppure necessiti di qualche ritocco per essere portata ad un livello professionale, anche di quella di controller. Per quanto riguarda la parte di grafica, invece, riconosco di essere stato più carente. Nonostante funzioni correttamente, non rispetta gli standard di qualità del codice che tendo ad auto-impormi. Questo è dovuto principalmente al fatto che ho sottovalutato il tempo che sarebbe stato necessario per implementarla e ne è derivato un codice poco flessibile e difficile da comprendere. All'interno del gruppo sento di aver avuto un ruolo importante, avendo spronato gli altri membri a perseguire una visione che avevo per il gioco. Nel complesso penso che questo progetto sia stato molto formativo, specialmente nell'ambito della coordinazione del lavoro, anche se ritengo di avere ancora molto da imparare sotto questo aspetto.
+
 #### Filippo Del Bianco
 
 #### Luca Ponseggi
