@@ -12,12 +12,12 @@ public interface Device {
     void switchOn();
 
     /**
-     * Disttiva il dispositivo.
+     * Disattiva il dispositivo.
      */
     void switchOff();
 
     /**
-     * @return  {@code true} se il dispositivo Ã¨ attivo, {@code false}
+     * @return  {@code true} se il dispositivo è attivo, {@code false}
      *          altrimenti
      */
     boolean isSwitchedOn();
